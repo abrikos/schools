@@ -1,0 +1,66 @@
+@import "../../components/themes/params"
+
+.home
+  .first-news
+    margin-bottom: 10px
+    .first-news-img
+      margin-bottom: 10px
+      img
+        display: block
+        margin: auto
+  .rest-news
+    .first-news-img
+      overflow: hidden
+      height: 120px
+
+  .post-small
+    box-shadow: none
+    display: flex
+    @media screen and (min-width: $min-width)
+      width: 40%
+    height: 100px
+    .post-small-text
+      display: none
+    .post-small-content
+      overflow: hidden
+      padding: 0 10px
+      width: 70%
+      h5
+        font-size: .8em
+    .post-small-image
+      width: 30%
+      overflow: hidden
+  .pages
+    a
+      display: block
+    h2
+      margin: 40px 0
+    div:nth-child(odd)
+      flex-direction: row-reverse
+    div
+      margin: 30px 0
+      img
+        max-width: 100%
+        border-radius: 120px
+  .home-carousel
+    overflow: hidden
+    .carousel-item
+      text-align: center
+      .plain-caption
+        @media screen and (min-width: $min-width)
+          display: none
+
+      img
+        display: block
+        margin: auto
+
+        @media screen and (max-width: $min-width)
+          height: 200px
+
+        @media screen and (min-width: $min-width)
+          max-height: 400px
+        max-width: 100%
+    .carousel-caption
+      background-color: rgba(74, 145, 253, 0.8)
+#feedback-form
+  font-size: .9em

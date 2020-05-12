@@ -1,0 +1,26 @@
+@import "../themes/params"
+.search-form
+  form
+    background-color: coral
+    padding: 20px
+    border-radius: .25rem
+
+  .header
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
+    grid-gap: 10px
+
+  .options
+    @media screen and (min-width: $min-width)
+      display: grid
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+      grid-gap: 10px
+      //display: flex
+      //justify-content: space-around
+      //flex-wrap: wrap
+    .option
+      margin: 5px 0
+      //width: 100%
+      //display: flex
+      //justify-content: space-around
+

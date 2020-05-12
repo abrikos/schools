@@ -1,0 +1,73 @@
+@import "client/components/themes/params"
+@font-face
+  font-family: "Roboto"
+  src: url("/RobotoCondensed-Regular.ttf")
+
+html
+  footer
+    text-align: center
+
+  body
+    .img-preview
+      max-width: 100%
+      max-height: 100%
+    h1
+      @media screen and (min-width: $min-width)
+        text-align: center
+    .top-menu
+      background-color: #EEE
+    .nav-link
+      cursor: pointer
+    .goog-te-gadget
+      div
+        border: none
+    .goog-te-gadget-icon
+      display: none
+    a
+      color: $text-color
+      h5
+        color: $head-color
+    .date
+      color: silver
+    .static-page
+      font-size: 1.3em
+      text-align: justify
+    .right-menu
+      .nav-item
+        margin: 0 5px
+        a
+          width: 30px
+          padding: 5px
+        .svg-circle
+          background-color: $blue-color
+          border-radius: 20px
+        .svg-circle:hover
+          background-color: #1bbe74
+    .blue-block
+      margin: 40px 0
+      padding: 40px
+      color: white
+      background-color: $blue-color
+
+    font-family: Roboto
+    .content
+      max-width: 1400px !important
+
+    nav
+      border-bottom: 1px solid silver
+      margin-bottom: 35px
+
+      .nav-item
+        margin: 0 10px
+
+    footer
+      border-top: 1px solid silver
+      margin-top: 35px
+
+    #bottom-info
+      margin-top: 35px
+      div
+        text-align: left
+        a
+          display: block
+
