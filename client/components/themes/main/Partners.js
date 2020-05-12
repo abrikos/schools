@@ -24,7 +24,7 @@ export default function Partners() {
             <hr/>
         </div>
         <div className="partners">
-        {partners.map((p,i)=><a href={p} target="_blank"><img src={images[`i${i}`]} className="img-fluid"/></a>)}
+        {partners.map((p,i)=><a href={p} target="_blank"><img src={images[`i${i+1}`]} className="img-fluid"/></a>)}
     </div>
     </div>
 

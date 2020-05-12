@@ -23,7 +23,7 @@ export default function MenuTop(props) {
 
     return <div>
         <div className="d-sm-flex d-none">
-            {items.map((item,i)=><h4 key={i} className="blue-box p-2 m-2 text-center" style={{flex:1}}><A href={item.path}>{item.label}</A></h4>)}
+            {items.map((item,i)=><h4 key={i} className="blue-box p-2 m-2 d-flex align-content-center text-center" style={{flex:1}}><A className="m-auto" href={item.path}>{item.label}</A></h4>)}
         </div>
         <Navbar light expand="xl" className="top-menu d-block d-sm-none">
             <NavbarToggler onClick={e => pullMenu(!menuPulled)} className="dark"/>
