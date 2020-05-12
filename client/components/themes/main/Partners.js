@@ -15,6 +15,7 @@ export default function Partners() {
         'https://tpykt.ru',
         'http://ugsakha.ru',
     ]
+
     return <div>
         <hr/>
         <div className="d-flex">
