@@ -12,6 +12,7 @@ export default function MenuTop(props) {
     }
 
     const items=[
+        {label:'Начало', path:'/'},
         {label:'О нас', path:'/about'},
         {label:'Основатель школ М.Е.Николаев', path:'/founder'},
         {label:'Школы', path:'/schools'},

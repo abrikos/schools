@@ -86,12 +86,12 @@ export default function Login(props) {
                     scope="https://www.googleapis.com/auth/analytics"
                 />}
             </div>
-            <div className="m-2">
+            {/*<div className="m-2">
                 <TelegramLogin {...props}/>
             </div>
             <div className="m-2">
                 <Button onClick={() => responseVk('vk')} color="light"><img src={vk} alt="В контакте" style={{width: 50}}/> </Button>
-            </div>
+            </div>*/}
         </div>
 
     </div>

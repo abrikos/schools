@@ -8,11 +8,9 @@ export default function Home(props) {
     const [news, setNews] = useState([]);
     const [newsLast, setNewsLast] = useState([]);
     useEffect(() => {
-        props.api('/post/search', {where: {published: true, isMassMedia: {$ne: true}}, limit: 15})
+        props.api('/post/search', {where: {published: true, isMassMedia: {$ne: true}}, limit: 5})
             .then(res => {
                 const last = [];
-                last.push(res.shift());
-                last.push(res.shift());
                 last.push(res.shift());
                 setNewsLast(last)
                 setNews(res)
@@ -34,10 +32,6 @@ export default function Home(props) {
         <div className="row">
             {newsLast && <div className="col-sm-4">
                 {formatLastNews(0)}
-                <div className="row rest-news">
-                    <div className="col-sm-6">{formatLastNews(1)}</div>
-                    <div className="col-sm-6">{formatLastNews(2)}</div>
-                </div>
             </div>}
             <div className="col-sm-8">
                 <div className="text-center">Все новости</div>
