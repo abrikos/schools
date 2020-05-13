@@ -27,7 +27,8 @@ const modelSchema = new Schema({
 
 
 modelSchema.statics.population = [
-    'files','photo','persons'
+    'files','photo',
+    {path: 'persons', populate: ['photo']},
 ];
 
 modelSchema.formOptions = {

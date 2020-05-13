@@ -30,7 +30,7 @@ const modelSchema = new Schema({
         toJSON: {virtuals: true}
     });
 
-modelSchema.statics.population = ['photo', 'school', 'files'];
+modelSchema.statics.population = ['photo', {path: 'school', populate: ['photo']}, 'files'];
 modelSchema.formOptions = {
     listOrder: {fio: 1},
     listFields: ['fioShort'],
@@ -39,6 +39,7 @@ modelSchema.formOptions = {
 }
 modelSchema.virtual('photoPath')
     .get(function () {
+        console.log(this.photo)
         return this.photo ? this.photo.path : '/noImage.png'
     });
 
