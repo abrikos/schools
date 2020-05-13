@@ -7,8 +7,6 @@ import AdminIndex from "client/pages/admin/AdminIndex";
 import SearchResult from "client/components/search/SearchResult";
 import Contacts from "client/pages/contacts/contacs";
 import SiteMap from "client/pages/SiteMap";
-import Research from "client/pages/home/research/Research";
-import Intellectual from "client/pages/home/intellectual/Intellectual";
 import Search from "client/pages/search/Search";
 import NewsPage from "client/pages/news/NewsPage";
 
@@ -21,8 +19,6 @@ export default function Routes(props) {
         "/contacts": () => <Contacts {...props}/>,
         "/login": () => <Login {...props}/>,
         "/wp-admin": () => <Login {...props}/>,
-        "/research": () => <Research {...props}/>,
-        "/intellectual": () => <Intellectual {...props}/>,
         "/admin/:control": (params) => <AdminIndex {...params} {...props}/>,
         "/admin/:control/:id/update": (params) => <AdminIndex {...params} {...props}/>,
         "/news": () => <NewsPage {...props}/>,
