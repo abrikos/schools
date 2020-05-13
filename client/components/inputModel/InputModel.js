@@ -45,9 +45,8 @@ export default function InputModel(props) {
     if (props.field.options.ref && list.length > 0) {
         input = <div><Input type="select" name={props.field.name} defaultValue={props.model[props.field.name] && props.model[props.field.name].id}>
             <option></option>
-            {list.map(l => <option key={l.id} value={l.id}>{l[props.field.options.property]}</option>)}
+            {list.map(l => <option key={l.id} value={l.id}>{l[props.field.options.property || 'name']}</option>)}
         </Input>
-
             {props.model[props.field.name] && <AdminLink model={props.model[props.field.name]} isAdmin={true}/>}
         </div>
     }

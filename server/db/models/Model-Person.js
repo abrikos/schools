@@ -9,17 +9,18 @@ const modelSchema = new Schema({
         fname: {type: String, label: 'Фамилия', required: true, default: 'Фам'},
         mname: {type: String, label: 'Имя', required: true, default: 'Им'},
         lname: {type: String, label: 'Отчество'},
+        statusId: {type: Number, label: 'Должность', select: [{label: "Директор", value: 1}, {label: "Завуч", value: 2}, {label: "Цчитель", value: 3}]},
+        school: {type: mongoose.Schema.Types.ObjectId, ref: 'School', label:'Школа'},
         phone: {type: String, label: 'Телефон', default: ''},
         email: {type: String, label: 'Эл.почта', default: ''},
+        description: {type: String, label: 'Описание', default: '', control: 'markdown'},
         education: {type: String, label: 'Образование', control:'markdown'},
         awards: {type: String, label: 'Награды', control:'markdown'},
         publications: {type: String, label: 'Публикации', control: 'markdown'},
         interest: {type: String, label: 'Научные интересы', control:'markdown'},
-        description: {type: String, label: 'Описание', default: '', control: 'markdown'},
-        school: {type: mongoose.Schema.Types.ObjectId, ref: 'School'},
         photo: {type: mongoose.Schema.Types.ObjectId, ref: 'File'},
         files: [{type: mongoose.Schema.Types.ObjectId, ref: 'File'}],
-        statusId: {type: Number, label: 'Должность', select: [{label: "Директор", value: 1}, {label: "Завуч", value: 2}, {label: "Цчитель", value: 3}]},
+
     },
     {
         //timestamps: {createdAt: 'createdAt'},
@@ -33,7 +34,7 @@ modelSchema.statics.population = ['photo', 'school', 'files'];
 modelSchema.formOptions = {
     listOrder: {fio: 1},
     listFields: ['fioShort'],
-    //virtualFields: ['divisions', 'councils', 'councilsChief', 'divisionsChief'],
+    //virtualFields: ['school'],
     searchFields: ['fname']
 }
 modelSchema.virtual('photoPath')
@@ -41,20 +42,17 @@ modelSchema.virtual('photoPath')
         return this.photo ? this.photo.path : '/noImage.png'
     });
 
-modelSchema.virtual('school', {
-    ref: 'School',
-    label: 'Школа',
-    property: 'name',
-    readOnly: true,
-    localField: '_id',
-    foreignField: 'persons',
-    justOne: false // set true for one-to-one relationship
-});
-
 
 modelSchema.virtual('fioShort')
     .get(function () {
         return this.lname ? `${this.fname} ${this.mname[0]}. ${this.lname[0]}.` : `${this.mname} ${this.fname[0]}.`
+    });
+
+modelSchema.virtual('fioAndStatus')
+    .get(function () {
+        const option = modelSchema.paths.statusId.options.select.find(o=>o.value === this.statusId)
+        const status = option && option.label;
+        return this.fioShort + ' ' + status;
     });
 
 modelSchema.virtual('fio')

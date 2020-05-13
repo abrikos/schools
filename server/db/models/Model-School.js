@@ -35,7 +35,7 @@ modelSchema.formOptions = {
     listOrder: {name: 1},
     listFields: ['name'],
     searchFields: ['name'],
-    hasMany: ['teachers']
+    virtualFields: ['persons']
 }
 
 modelSchema.virtual('adminLink')
@@ -46,7 +46,7 @@ modelSchema.virtual('adminLink')
 modelSchema.virtual('persons', {
     ref: 'Person',
     label: 'Сотрудники',
-    property: 'fioShort',
+    property: 'fioAndStatus',
     readOnly: true,
     localField: '_id',
     foreignField: 'school',
