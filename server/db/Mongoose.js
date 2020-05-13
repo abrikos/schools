@@ -10,7 +10,7 @@ require('dotenv').config();
 mongoose.set('useCreateIndex', true);
 // подключение
 console.log('Mongoose connect...');
-mongoose.connect(process.env.MONGO, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {useNewUrlParser: true, useUnifiedTopology: true});
 console.log('Mongoose connected!');
 //mongoose.connect("mongodb://108.160.143.119:27017/minterEarth", {useNewUrlParser: true});
 
