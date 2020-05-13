@@ -39,7 +39,6 @@ modelSchema.formOptions = {
 }
 modelSchema.virtual('photoPath')
     .get(function () {
-        console.log(this.photo)
         return this.photo ? this.photo.path : '/noImage.png'
     });
 
