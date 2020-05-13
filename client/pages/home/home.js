@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {A} from "hookrouter"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import PostSmall from "client/pages/news/PostSmall";
 import "./home.sass"
-import woman from "./research/woman.jpeg"
-import intell from "./intellectual/home2.jpeg"
 import DateFormat from "client/components/DateFormat";
 
 export default function Home(props) {
@@ -24,7 +20,7 @@ export default function Home(props) {
     }, []);
 
     function formatLastNews(i) {
-        if(!newsLast[i]) return <div></div>;
+        if (!newsLast[i]) return <div></div>;
         return <div className="first-news">
             <div className="first-news-img">
                 <A href={newsLast[i].link}><img src={newsLast[i].previewPath} className="img-preview"/></A>
