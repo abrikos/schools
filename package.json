@@ -19,6 +19,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react-app": "^6.1.0",
+    "bfj": "^7.0.2",
     "bootstrap": "^4.4.1",
     "bootstrap-switch-button-react": "^1.2.0",
     "canvasjs": "^1.8.3",
