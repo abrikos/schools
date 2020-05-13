@@ -46,7 +46,7 @@ module.exports.controller = function (app) {
         Mongoose.post.create({user, header}).then(post => res.send(post))
     });
 
-    app.post('/api/post/:id/image-preview/:image', passportLib.isAdmin, (req, res) => {
+    app.post('/api/post/:id/file-preview/:file', passportLib.isAdmin, (req, res) => {
         if (!Mongoose.Types.ObjectId.isValid(req.params.id)) return res.send(app.locals.sendError({error: 404, message: 'Wrong Id'}))
         Mongoose.post.findById(req.params.id)
             .then(post => {
@@ -56,11 +56,11 @@ module.exports.controller = function (app) {
             .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
     });
 
-    app.post('/api/post/:id/images/add', passportLib.isAdmin, (req, res) => {
+    app.post('/api/post/:id/files/add', passportLib.isAdmin, (req, res) => {
         if (!Mongoose.Types.ObjectId.isValid(req.params.id)) return res.send(app.locals.sendError({error: 404, message: 'Wrong Id'}))
         Mongoose.post.findById(req.params.id)
             .then(post => {
-                post.images = post.images.concat(req.body.images);
+                post.files = post.files.concat(req.body.files);
                 post.save();
                 post.editable = true;
                 res.send(post)
@@ -74,7 +74,7 @@ module.exports.controller = function (app) {
             .then(post => res.render('post', {
                 header: post.header,
                 text: striptags(post.text),
-                image: req.protocol + '://' + req.get('host') + (post.image ? post.image.path : '/logo.svg'),
+                image: req.protocol + '://' + req.get('host') + (post.photo ? post.photo.path : '/logo.svg'),
                 url: req.protocol + '://' + req.get('host') + '/post/' + post.id
             }))
             .catch(e => res.send(app.locals.sendError({error: 404, message: e.message})))

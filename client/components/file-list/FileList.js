@@ -1,17 +1,17 @@
 import React, {useState} from "react";
-import "./image-list.sass";
+import "client/components/file-list/file-list.sass";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import PropTypes from "prop-types";
 
-ImageList.propTypes = {
-    images: PropTypes.array.isRequired,
+FileList.propTypes = {
+    files: PropTypes.array.isRequired,
     editable: PropTypes.bool,
     controls: PropTypes.array,
     onDelete: PropTypes.func,
 };
 
 
-export default function ImageList(props) {
+export default function FileList(props) {
     const [deleted, setDeleted] = useState([]);
     const [modal, setModal] = useState(false);
     const [modalImage, setModalImage] = useState();
@@ -19,7 +19,7 @@ export default function ImageList(props) {
 
     function deleteImage(img) {
         if(!window.confirm('Удалить изображение?')) return;
-        props.api('/image/delete/'+img.id)
+        props.api('/file/delete/'+img.id)
             .then(() => {
                 const del = [...deleted];
                 del.push(img.id);
@@ -34,9 +34,9 @@ export default function ImageList(props) {
         toggle();
     }
 
-    if(!props.images) return <div/>;
+    if(!props.files) return <div/>;
     return <div className="image-list">
-        {props.images.filter(img => !deleted.includes(img.id)).map((img, i) => <div key={i} className="image-cell">
+        {props.files.filter(img => !deleted.includes(img.id)).map((img, i) => <div key={i} className="image-cell">
             <div className="img-tools">
                 {props.controls}
                 {props.editable  && img.id && props.setPreview &&  <Button size="sm" color="success" onClick={() => props.setPreview(img)}>👁</Button>}

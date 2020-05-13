@@ -1,7 +1,9 @@
 import User from "server/db/models/Model-User";
-import image from "server/db/models/Model-Image";
+import file from "server/db/models/Model-File";
 import post from "server/db/models/Model-Post";
 import video from "server/db/models/Model-Vieo";
+import person from "server/db/models/Model-Person";
+import school from "server/db/models/Model-School";
 
 const mongoose = require("mongoose");
 require('dotenv').config();
@@ -30,7 +32,7 @@ const Mongoose = {
     isValidId: function (id) {
         return mongoose.Types.ObjectId.isValid(id)
     },
-    User, image, post,  video
+    User, file, post,  video, person, school
 
 };
 export default Mongoose;

@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 const modelSchema = new Schema({
         extension: String,
         name: String,
-        page: String,
         description: String,
 
     },
@@ -34,6 +33,6 @@ modelSchema.virtual('date')
     });
 
 
-export default mongoose.model("Image", modelSchema)
+export default mongoose.model("File", modelSchema)
 
 

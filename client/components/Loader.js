@@ -1,5 +1,5 @@
 import React from 'react';
-import loader from 'client/images/loader.gif'
+import loader from 'client/files/loader.gif'
 
 export default function Loader(){
 

@@ -148,12 +148,12 @@ module.exports.controller = function (app) {
                 res.send(r);
             })
     });
-    app.post('/api/admin/:model/:id/images/add', passportLib.isAdmin, (req, res) => {
+    app.post('/api/admin/:model/:id/files/add', passportLib.isAdmin, (req, res) => {
         if (!Mongoose.Types.ObjectId.isValid(req.params.id)) return res.send(app.locals.sendError({error: 404, message: 'Wrong Id'}))
         Mongoose[req.params.model].findById(req.params.id)
 
             .then(model => {
-                model.images = model.images.concat(req.body.images);
+                model.files = model.files.concat(req.body.files);
 
                 model.save()
                 model.populate(Mongoose[req.params.model].population).execPopulate((e, m) => {
@@ -164,15 +164,19 @@ module.exports.controller = function (app) {
             })
             .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
     });
-    app.post('/api/admin/:model/:id/image-preview/:image', passportLib.isAdmin, (req, res) => {
+    app.post('/api/admin/:model/:id/file-preview/:file', passportLib.isAdmin, (req, res) => {
         if (!Mongoose.Types.ObjectId.isValid(req.params.id)) return res.send(app.locals.sendError({error: 404, message: 'Wrong Id'}))
         Mongoose[req.params.model].findById(req.params.id)
             .then(model => {
-                model.image = req.params.image;
-                model.save();
-                model.populate(Mongoose[req.params.model].population).execPopulate((e, m) => {
-                    res.send(m)
-                })
+                model.photo = req.params.file;
+                model.save()
+                    .then(model1 => {
+                        model1.populate(Mongoose[req.params.model].population).execPopulate((e, m) => {
+                            console.log(m)
+                            res.send(m)
+                        })
+                    });
+
             })
             .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
     });

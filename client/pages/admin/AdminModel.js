@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Button} from "reactstrap";
 import {A, navigate} from "hookrouter";
-import ImageUpload from "client/components/image-list/ImageUpload";
-import ImageList from "client/components/image-list/ImageList";
+import FileUpload from "client/components/file-list/FileUpload";
+import FileList from "client/components/file-list/FileList";
 import InputModel from "client/components/inputModel/InputModel";
 import Pager from "client/components/Pager";
 
@@ -71,13 +71,13 @@ export default function (props) {
 
     }
 
-    function uploadDone(images) {
-        props.api(`/admin/${modelName}/${model.id}/images/add`, {images})
+    function uploadDone(files) {
+        props.api(`/admin/${modelName}/${model.id}/files/add`, {files})
             .then(setModel)
     }
 
     function setPreview(img) {
-        props.api(`/admin/${modelName}/${model.id}/image-preview/${img.id}`)
+        props.api(`/admin/${modelName}/${model.id}/file-preview/${img.id}`)
             .then(setModel)
     }
 
@@ -148,12 +148,12 @@ export default function (props) {
 
                 </div>
                 <div className="col-2">
-                    {model.photo && <img src={model.photo} alt={model.id} className="img-fluid"/>}
-                    <ImageUpload uploadDone={uploadDone} {...props}/>
-                    {model.images && <ImageList
-                        key={model.images.length}
+                    <img src={model.photoPath} alt={model.id} className="img-fluid"/>
+                    <FileUpload uploadDone={uploadDone} {...props}/>
+                    {model.files && <FileList
+                        key={model.files.length}
                         setPreview={setPreview}
-                        images={model.images.filter(i => i.isImage)}
+                        files={model.files.filter(i => i.isImage)}
                         editable={true}
                         {...props}/>}
                 </div>

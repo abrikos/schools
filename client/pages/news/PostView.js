@@ -38,9 +38,9 @@ export default function PostView(props) {
             <div className="post-text">
                 {post.isMarkdown ? <MarkDown source={post.text}/> : <HtmlView text={post.text}/>}
             </div>
-            {/*{!!images.length && <ImageCarousel images={images}/>}*/}
+            {/*{!!files.length && <ImageCarousel files={files}/>}*/}
             <hr/>
-            {post.images.filter(i => !i.isImage).map(i => <a href={i.path} key={i.id}>{i.description}</a>)}
+            {post.files.filter(i => !i.isImage).map(i => <a href={i.path} key={i.id}>{i.description}</a>)}
             <hr/>
 
             <ShareButtons link={apiLink}/>

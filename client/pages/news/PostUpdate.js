@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import ImageUpload from "client/components/image-list/ImageUpload";
+import FileUpload from "client/components/file-list/FileUpload";
 import {Button, FormFeedback, FormGroup, Input, Label} from "reactstrap";
 import {A, navigate} from "hookrouter";
 import ErrorPage from "client/components/service/ErrorPage";
-import ImageList from "client/components/image-list/ImageList";
+import FileList from "client/components/file-list/FileList";
 import HtmlEditor from "client/components/html-editor/HtmlEditor";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes, faTrash} from "@fortawesome/free-solid-svg-icons";
@@ -50,8 +50,8 @@ export default function (props) {
     if (!post.editable) return <ErrorPage error={403}/>;
 
 
-    function uploadDone(images) {
-        props.api(`/post/${post.id}/images/add`, {images}).then(loadPost)
+    function uploadDone(files) {
+        props.api(`/post/${post.id}/files/add`, {files}).then(loadPost)
     }
 
     function change() {
@@ -135,16 +135,16 @@ export default function (props) {
         <div className="col-2">
             <h3>Превью</h3>
             <div style={{height: 200}}>{post.preview && <img src={post.preview.path} alt={post.preview.path} className="img-fluid"/>}</div>
-            <ImageUpload uploadDone={uploadDone} editable={true} {...props}/>
+            <FileUpload uploadDone={uploadDone} editable={true} {...props}/>
             <h3>Изображения</h3>
             <small>Перетащите в текст или пкм "Скопировать" - "Вставить"</small>
-            <ImageList
+            <FileList
                 setPreview={setPreview}
-                images={post.images.filter(i => i.isImage)}
+                files={post.files.filter(i => i.isImage)}
                 editable={true}
                 {...props}/>
             <h3>Документы</h3>
-            {post.images.filter(i => !i.isImage).map(f => <a href={f.path} key={f.id} className="d-block border-bottom">{f.description}</a>)}
+            {post.files.filter(i => !i.isImage).map(f => <a href={f.path} key={f.id} className="d-block border-bottom">{f.description}</a>)}
         </div>
 
     </div>

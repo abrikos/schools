@@ -5,28 +5,28 @@ const passportLib = require('server/lib/passport');
 
 module.exports.controller = function (app) {
 
-    app.post('/api/image/upload', async (req, res) => {
+    app.post('/api/file/upload', async (req, res) => {
         if (req.files && Object.keys(req.files).length) {
             if (!req.files) return res.send(app.locals.sendError({error: 500, message: 'No files uploaded'}));
-            if (!req.files.image) return res.send(app.locals.sendError({error: 500, message: 'No files uploaded'}));
-            //if (!req.files.image.mimetype.match('image')) return res.send(app.locals.sendError({error: 500, message: 'Wrong images uploaded'}));
-            const match = req.files.image.mimetype.match(/\/([a-z]+)/);
-            Mongoose.image.create({extension: match[1], name: new Date().valueOf(), description: req.files.image.name, user: req.session.userId})
-                .then(file => req.files.image.mv(`.${file.path}`, function (err) {
+            if (!req.files.file) return res.send(app.locals.sendError({error: 500, message: 'No file uploaded'}));
+            //if (!req.files.image.mimetype.match('image')) return res.send(app.locals.sendError({error: 500, message: 'Wrong files uploaded'}));
+            const match = req.files.file.mimetype.match(/\/([a-z]+)/);
+            Mongoose.file.create({extension: match[1], name: new Date().valueOf(), description: req.files.file.name, user: req.session.userId})
+                .then(file => req.files.file.mv(`.${file.path}`, function (err) {
                     if (err) return res.send({error: 500, message: err})
                     res.send(file)
-                    /*post.populate('images').execPopulate((e, p)=>{
-                        res.send(p.images)
+                    /*post.populate('files').execPopulate((e, p)=>{
+                        res.send(p.files)
                     })*/
                 }))
                 .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
         }
     });
 
-    app.post('/api/image/delete/:id', passportLib.isAdmin, async (req, res) => {
+    app.post('/api/file/delete/:id', passportLib.isAdmin, async (req, res) => {
         if (!Mongoose.Types.ObjectId.isValid(req.params.id)) return res.send(app.locals.sendError({error: 404, message: 'Wrong ID'}))
 
-        Mongoose.image.findById(req.params.id)
+        Mongoose.file.findById(req.params.id)
             .then(img => {
                 img.delete()
                 res.sendStatus(200);

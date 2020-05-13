@@ -17,12 +17,8 @@ export default function AdminIndex(props) {
         //static:['Страницы', <AdminNews type={'static'} {...props}/>],
         //video:['YouTube', <AdminVideo {...props}/>],
         users: ['Пользователи', <AdminUser  {...props}/>],
-        division: ['Подразделения', <AdminModel  {...props}/>],
+        school: ['Школа', <AdminModel  {...props}/>],
         person: ['Персоны', <AdminModel  {...props}/>],
-        council: ['ОУС', <AdminModel  {...props}/>],
-        edition: ['Издания', <AdminModel  {...props}/>],
-        document: ['Документы', <AdminModel  {...props}/>],
-
     };
 
     if (!props.authenticatedUser.admin) return <ErrorPage error={403}/>;

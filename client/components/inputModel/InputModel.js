@@ -24,6 +24,7 @@ export default function InputModel(props) {
         console.log(props.field.options.ref.toLowerCase(), filter)
         props.api(`/${props.field.options.ref.toLowerCase()}/list`, filter)
             .then(res => setList(res.list))
+            .catch(console.error)
     }, [])
 
 

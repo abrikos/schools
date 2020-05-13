@@ -1,15 +1,15 @@
 import React, {useState} from "react";
-import ImageList from "client/components/image-list/ImageList";
+import FileList from "client/components/file-list/FileList";
 import Loader from "client/components/Loader";
 import PropTypes from "prop-types";
 
-ImageUpload.propTypes = {
+FileUpload.propTypes = {
     uploadDone: PropTypes.func.isRequired
 };
 
-export default function ImageUpload(props) {
-    //const [imagesUploaded, setImagesUploaded] = useState([]);
-    const [imagesDeclined, setImagesDeclined] = useState([]);
+export default function FileUpload(props) {
+    //const [filesUploaded, setImagesUploaded] = useState([]);
+    const [filesDeclined, setImagesDeclined] = useState([]);
     const [loader, setLoader] = useState(false);
     const tokens = props.tokens;
 
@@ -27,10 +27,10 @@ export default function ImageUpload(props) {
                 //setImagesUploaded(ims);
             };*/
             const formData = new FormData();
-            formData.append('image', file);
+            formData.append('file', file);
             formData.append('tokens', tokens);
             try {
-                const image = await props.api('/image/upload/', formData);
+                const image = await props.api('/file/upload/', formData);
                 uploaded.push(image);
             } catch (e) {
                 declined.push({error: e.message, file})
@@ -46,14 +46,14 @@ export default function ImageUpload(props) {
 
     return <div>
         {loader ? <Loader/> : <input type="file" multiple={true} onChange={_handleImageChange}/>}
-        {/*{!!imagesUploaded.length && <div>
+        {/*{!!filesUploaded.length && <div>
             <h4>Загружено</h4>
-            <ImageList images={imagesUploaded} editable={props.editable} {...props}/>
+            <ImageList files={filesUploaded} editable={props.editable} {...props}/>
         </div>}*/}
 
-        {!!imagesDeclined.length && <div>
+        {!!filesDeclined.length && <div>
             <h4>Отказано</h4>
-            <ImageList images={imagesDeclined} {...props}/>
+            <FileList files={filesDeclined} {...props}/>
         </div>}
 
     </div>

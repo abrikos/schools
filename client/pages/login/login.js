@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {navigate} from "hookrouter";
 import {Button, FormFeedback, FormGroup, Input, Label} from "reactstrap";
-import vk from "client/images/vkcom.svg"
+import vk from "client/files/vkcom.svg"
 import TelegramLogin from "client/pages/login/TelegramLogin";
 import GoogleLogin from 'react-google-login';
 

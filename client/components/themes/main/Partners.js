@@ -1,5 +1,5 @@
 import React from "react";
-import * as images from "./photos/partners"
+import * as files from "./photos/partners"
 import {A} from "hookrouter"
 
 export default function Partners() {
@@ -24,7 +24,7 @@ export default function Partners() {
             <hr/>
         </div>
         <div className="partners">
-        {partners.map((p,i)=><a href={p} target="_blank"><img src={images[`i${i+1}`]} className="img-fluid"/></a>)}
+        {partners.map((p,i)=><a href={p} target="_blank"><img src={files[`i${i+1}`]} className="img-fluid"/></a>)}
     </div>
     </div>
 

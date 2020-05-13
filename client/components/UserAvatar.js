@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import noUserImg from "client/images/nouser.png";
-import blockedImg from "client/images/telegram-blocked.svg";
+import noUserImg from "client/files/nouser.png";
+import blockedImg from "client/files/telegram-blocked.svg";
 import PropTypes from "prop-types";
 
 export default function UserAvatar(props) {

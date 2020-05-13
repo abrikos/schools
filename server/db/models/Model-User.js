@@ -10,7 +10,7 @@ const modelSchema = new Schema({
         password: String,
         photo: String,
         admin: {type: Boolean},
-        images: [{type: mongoose.Schema.Types.ObjectId, ref: 'Image'}]
+        files: [{type: mongoose.Schema.Types.ObjectId, ref: 'Image'}]
     },
     {
         timestamps: {createdAt: 'createdAt'},

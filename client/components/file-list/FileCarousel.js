@@ -6,10 +6,10 @@ import {
     CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
-import ImageList from "client/components/image-list/ImageList";
+import FileList from "client/components/file-list/FileList";
 
-export default function ImageCarousel(props) {
-    const items= props.images.map(i=>({src:i.path}))
+export default function FileCarousel(props) {
+    const items= props.files.map(i=>({src:i.path}))
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
 
@@ -55,7 +55,7 @@ export default function ImageCarousel(props) {
             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
         </Carousel>
-        <div  className="d-sm-none d-block"><ImageList images={props.images}/></div>
+        <div  className="d-sm-none d-block"><FileList files={props.files}/></div>
     </div>
 
 }

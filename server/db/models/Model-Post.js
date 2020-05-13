@@ -15,9 +15,8 @@ const modelSchema = new Schema({
         isElection: {type: Boolean, label: 'Выборы'},
         views: {type: Number, default: 0},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-        images: [{type: mongoose.Schema.Types.ObjectId, ref: 'Image'}],
-        image: {type: mongoose.Schema.Types.ObjectId, ref: 'Image'},
-        preview: {type: mongoose.Schema.Types.ObjectId, ref: 'Image'},
+        files: [{type: mongoose.Schema.Types.ObjectId, ref: 'File'}],
+        photo: {type: mongoose.Schema.Types.ObjectId, ref: 'File'},
 
     },
     {
@@ -28,7 +27,7 @@ const modelSchema = new Schema({
         toJSON: {virtuals: true}
     });
 
-modelSchema.statics.population = ['image', 'images', 'preview'];
+modelSchema.statics.population = ['photo', 'files'];
 
 modelSchema.formOptions = {
     label: 'Новости',
@@ -49,8 +48,7 @@ modelSchema.virtual('date')
 
 modelSchema.virtual('previewPath')
     .get(function () {
-        const image = this.image || this.preview;
-        return image ? image.path : '/noImage.png'
+        return this.photo ? this.photo.path : '/noImage.png'
     });
 
 modelSchema.virtual('adminLink')
