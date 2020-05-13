@@ -12,7 +12,7 @@ export default function AdminIndex(props) {
     const pages = {
 
         start: ['Начало', <AdminStart  {...props}/>],
-        news: ['Новости HTML', <AdminNews type={'news'} {...props}/>],
+        post: ['Новости HTML', <AdminModel {...props}/>],
         //post: ['Новости', <AdminModel {...props}/>],
         //static:['Страницы', <AdminNews type={'static'} {...props}/>],
         //video:['YouTube', <AdminVideo {...props}/>],

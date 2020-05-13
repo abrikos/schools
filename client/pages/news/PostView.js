@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ErrorPage from "client/components/service/ErrorPage";
 import ShareButtons from "client/components/share-button/ShareButtons";
 import DateFormat from "client/components/DateFormat";
-import "client/pages/news/post-view.sass"
+import "client/pages/news/post.sass"
 import HtmlView from "client/components/HtmlView";
 import AdminLink from "client/components/AdminLink";
 import MarkDown from "react-markdown";

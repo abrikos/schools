@@ -4,10 +4,10 @@ import {A} from "hookrouter";
 import AdminLink from "client/components/AdminLink";
 
 export default function (props) {
-    const p = props.person;
+    const p = props;
     return <div className="person-large">
         <div className="supervisor-image">
-            <img src={p.photo} alt={p.fio}/>
+            <img src={p.photoPath} alt={p.fio}/>
 
         </div>
 

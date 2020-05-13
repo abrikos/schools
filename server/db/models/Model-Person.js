@@ -48,11 +48,15 @@ modelSchema.virtual('fioShort')
         return this.lname ? `${this.fname} ${this.mname[0]}. ${this.lname[0]}.` : `${this.mname} ${this.fname[0]}.`
     });
 
-modelSchema.virtual('fioAndStatus')
+modelSchema.virtual('statusName')
     .get(function () {
         const option = modelSchema.paths.statusId.options.select.find(o=>o.value === this.statusId)
-        const status = option && option.label;
-        return this.fioShort + ' ' + status;
+        return option && option.label;
+    });
+
+modelSchema.virtual('fioAndStatus')
+    .get(function () {
+        return this.fioShort + ' ' + this.statusName;
     });
 
 modelSchema.virtual('fio')

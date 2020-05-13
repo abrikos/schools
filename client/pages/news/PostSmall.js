@@ -1,5 +1,4 @@
 import React from 'react';
-import "client/pages/news/post-small.sass"
 import {A} from "hookrouter";
 import DateFormat from "client/components/DateFormat";
 import PropTypes from "prop-types";
@@ -12,7 +11,7 @@ export default function PostSmall(props) {
         isAdmin: PropTypes.bool,
     };
 
-    const post = props.post;
+    const post = props;
     const link = props.isAdmin ? post.adminLink : post.link;
     return <div className={`post-small`}>
         <div className="post-small-image">
@@ -24,7 +23,7 @@ export default function PostSmall(props) {
             {props.isAdmin || <div>
                 {post.isMassMedia && <a href={link} target="_blank" rel="noopener noreferrer">{striptags(post.text)}</a>}
                 {!post.isMassMedia && <div className="post-small-text">
-                    {post.text && <A href={link}><MarkDown source={striptags(post.text)}/></A>}
+                    {post.text && <MarkDown source={striptags(post.text)}/>}
                 </div>}
             </div>}
         </div>

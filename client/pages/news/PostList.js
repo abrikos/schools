@@ -20,7 +20,6 @@ export default function (props) {
         f.skip = 0;
         if (!props.isAdmin) f.where.published = true;
         setFilter(f);
-        console.log(JSON.stringify(f))
         props.api('/post/list', f).then(res=> {
             setPosts(res.list)
             setTotalCount(res.count);

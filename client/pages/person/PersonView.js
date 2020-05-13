@@ -18,7 +18,7 @@ export default function (props) {
         <h1>{model.fio} <AdminLink model={model} {...props}/></h1>
         <div className="row">
             <div className="col-sm-4">
-                <img src={model.photo} className="img-fluid" alt={model.fio}/>
+                <img src={model.photoPath} className="img-fluid" alt={model.fio}/>
             </div>
             <div className="col-sm-6">
                 <h4 className="division">{model.divisionName}</h4>

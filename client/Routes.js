@@ -9,6 +9,9 @@ import Contacts from "client/pages/contacts/contacs";
 import SiteMap from "client/pages/SiteMap";
 import Search from "client/pages/search/Search";
 import NewsPage from "client/pages/news/NewsPage";
+import ModelList from "client/pages/model/ModelList";
+import SchoolFull from "client/pages/school/SchoolFull";
+import PersonView from "client/pages/person/PersonView";
 
 export default function Routes(props) {
 
@@ -18,11 +21,18 @@ export default function Routes(props) {
         "/search": () => <Search {...props}/>,
         "/contacts": () => <Contacts {...props}/>,
         "/login": () => <Login {...props}/>,
+
+        "/schools": () => <ModelList key={'school'} title="Школы" model="school" filter={{order:'name'}} {...props}/>,
+        "/news": () => <ModelList key={'news'} title="Новости" model="post" filter={{order: {createdAt:-1}}} {...props}/>,
+
+
         "/wp-admin": () => <Login {...props}/>,
         "/admin/:control": (params) => <AdminIndex {...params} {...props}/>,
         "/admin/:control/:id/update": (params) => <AdminIndex {...params} {...props}/>,
-        "/news": () => <NewsPage {...props}/>,
-        "/static/:path": (params) => <PostView {...params} {...props}/>,
+
+        "/school/:id/:name": (params) => <SchoolFull {...params} {...props}/>,
+        "/person/:id/:name": (params) => <PersonView {...params} {...props}/>,
+
         "/news/:id": (params) => <PostView {...params} {...props}/>,
         "/news/:id/:path": (params) => <PostView {...params} {...props}/>,
 

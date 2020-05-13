@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, UncontrolledDropdown,} from "reactstrap";
-import {A, navigate, usePath} from "hookrouter";
+import {Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarToggler, NavItem, UncontrolledDropdown,} from "reactstrap";
+import {A, usePath} from "hookrouter";
 import "client/components/themes/main/navbar.sass"
 
 export default function MenuTop(props) {
@@ -11,20 +11,20 @@ export default function MenuTop(props) {
         return path === currentPath;
     }
 
-    const items=[
-        {label:'Начало', path:'/'},
-        {label:'О нас', path:'/about'},
-        {label:'Основатель школ М.Е.Николаев', path:'/founder'},
-        {label:'Школы', path:'/schools'},
-        {label:'Новости', path:'/news'},
-        {label:'Содержание образования', path:'/content'},
-        {label:'Стратегия развития', path:'/strategy'},
-        {label:'План мероприятий', path:'/plan'},
+    const items = [
+        {label: 'Начало', path: '/'},
+        {label: 'О нас', path: '/about'},
+        {label: 'Основатель школ М.Е.Николаев', path: '/founder'},
+        {label: 'Школы', path: '/schools'},
+        {label: 'Новости', path: '/news'},
+        {label: 'Содержание образования', path: '/content'},
+        {label: 'Стратегия развития', path: '/strategy'},
+        {label: 'План мероприятий', path: '/plan'},
     ]
 
     return <div>
         <div className="d-sm-flex d-none">
-            {items.map((item,i)=><h4 key={i} className="blue-box p-2 m-2 d-flex align-content-center text-center" style={{flex:1}}><A className="m-auto" href={item.path}>{item.label}</A></h4>)}
+            {items.map((item, i) => <h4 key={i} className={`${isActive(item.path) ? '' : 'blue-box'} p-2 m-2 d-flex align-content-center text-center`} style={{flex: 1}}><A className="m-auto" href={item.path}>{item.label}</A></h4>)}
         </div>
         <Navbar light expand="xl" className="top-menu d-block d-sm-none">
             <NavbarToggler onClick={e => pullMenu(!menuPulled)} className="dark"/>

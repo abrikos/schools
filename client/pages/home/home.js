@@ -36,7 +36,7 @@ export default function Home(props) {
             <div className="col-sm-8">
                 <div className="text-center">Все новости</div>
                 <div className="d-flex flex-wrap">
-                    {news.map(n => <PostSmall key={n.id} post={n}/>)}
+                    {news.map(n => <div key={n.id}>{PostSmall(n)}</div>)}
                 </div>
             </div>
 

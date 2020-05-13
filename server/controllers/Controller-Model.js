@@ -25,7 +25,6 @@ module.exports.controller = function (app) {
         }
         if (schema.formOptions) {
             ret.fields = ret.fields.concat(schema.formOptions.virtualFields ? schema.formOptions.virtualFields.map(f => {
-                console.log(schema.virtuals[f].options)
                 const ret = {
                     name: f,
                     type: 'virtual',
