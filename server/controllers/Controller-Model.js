@@ -79,6 +79,7 @@ module.exports.controller = function (app) {
         return body.where;
     }
 
+
     app.post('/api/:model/list', (req, res) => {
         const filter = bodyToWhere(req.body);
         Mongoose[req.params.model].find(filter)
@@ -196,20 +197,6 @@ module.exports.controller = function (app) {
     });
 
 
-    function bodyToWhere(body) {
-        if (!body.where) body.where = {};
-        body.where.published = true;
-        for(const f in body.where){
-            if(!body.where[f]) delete body.where[f];
-        }
-        if (body.where.text) {
-            body.where.$or =[{text:new RegExp(body.where.text, 'i')},{header:new RegExp(body.where.text, 'i')},]
-            delete body.where.text;
-        } else {
-            delete body.where.text;
-        }
-        return body.where;
-    }
 
     app.post('/api/:model/search', (req, res) => {
         const filter = bodyToWhere(req.body);
