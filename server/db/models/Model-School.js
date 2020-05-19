@@ -8,9 +8,9 @@ const Schema = mongoose.Schema;
 const modelSchema = new Schema({
         name: {type: String, required: true, label: 'Название', default:'Новая школа'},
         site: {type: String, label: 'Сайт'},
+        email: {type: String, label: 'Email'},
         address: {type: String, label: 'Адрес'},
         phone: {type: String, label: 'Телефон'},
-        email: {type: String, label: 'Email'},
         //path: {type: String, label: 'Путь'},
         description: {type: String, label: 'Описание', control:'markdown'},
         //director: {type: mongoose.Schema.Types.ObjectId, ref: 'Person'},

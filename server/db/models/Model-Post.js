@@ -53,7 +53,7 @@ modelSchema.virtual('previewPath')
 
 modelSchema.virtual('adminLink')
     .get(function () {
-        return `/admin/news/${this.id}/update`
+        return `/admin/post/${this.id}/update`
     });
 
 modelSchema.virtual('link')

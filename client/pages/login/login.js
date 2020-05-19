@@ -45,7 +45,7 @@ export default function Login(props) {
     }
 
     useEffect(()=>{
-        if(user) navigate(user.admin ? '/admin/news' : (props.returnUrl || '/cabinet'))
+        if(user) navigate(user.admin ? '/admin/post' : (props.returnUrl || '/cabinet'))
     },[user])
 
     return <div>
