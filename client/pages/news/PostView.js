@@ -32,17 +32,19 @@ export default function PostView(props) {
             <AdminLink model={post} isAdmin={post.editable} {...props}/>
             <hr/>
             <div className="d-flex justify-content-center">
-                <img src={post.previewPath} className="m-auto" alt={post.header}/>
+                <img src={post.photoPath} className="m-auto" alt={post.header}/>
             </div>
 
             <div className="post-text">
-                {post.isMarkdown ? <MarkDown source={post.text}/> : <HtmlView text={post.text}/>}
+                {post.isHtml ?  <HtmlView text={post.text}/> : <MarkDown source={post.text}/>}
             </div>
             {/*{!!files.length && <ImageCarousel files={files}/>}*/}
             <hr/>
             {post.files.filter(i => !i.isImage).map(i => <a href={i.path} key={i.id}>{i.description}</a>)}
             <hr/>
-
+            <div className="d-sm-flex flex-wrap">
+            {post.files.map(f=><img  src={f.path} className="img-fluid"/> )}
+            </div>
             <ShareButtons link={apiLink}/>
 
         </div>

@@ -8,7 +8,7 @@ export default function Home(props) {
     const [news, setNews] = useState([]);
     const [newsLast, setNewsLast] = useState([]);
     useEffect(() => {
-        props.api('/post/search', {where: {published: true, isMassMedia: {$ne: true}}, limit: 5})
+        props.api('/post/search', {where: {published: true, isMassMedia: {$ne: true}}, limit: 3})
             .then(res => {
                 const last = [];
                 last.push(res.shift());
@@ -21,7 +21,7 @@ export default function Home(props) {
         if (!newsLast[i]) return <div></div>;
         return <div className="first-news">
             <div className="first-news-img">
-                <A href={newsLast[i].link}><img src={newsLast[i].previewPath} className="img-preview"/></A>
+                <A href={newsLast[i].link}><img src={newsLast[i].photoPath} className="img-preview"/></A>
             </div>
             <div><DateFormat date={newsLast[i].date}/></div>
             <A href={newsLast[i].link}>{newsLast[i].header}</A>
@@ -34,7 +34,6 @@ export default function Home(props) {
                 {formatLastNews(0)}
             </div>}
             <div className="col-sm-8">
-                <div className="text-center">Все новости</div>
                 <div className="d-flex flex-wrap">
                     {news.map(n => <div key={n.id}>{PostSmall(n)}</div>)}
                 </div>

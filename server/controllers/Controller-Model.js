@@ -173,6 +173,7 @@ module.exports.controller = function (app) {
                 model.save()
                     .then(model1 => {
                         model1.populate(Mongoose[req.params.model].population).execPopulate((e, m) => {
+                            console.log(m)
                             res.send(m)
                         })
                     });

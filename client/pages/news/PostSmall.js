@@ -15,7 +15,7 @@ export default function PostSmall(props) {
     const link = props.isAdmin ? post.adminLink : post.link;
     return <div className={`post-small`}>
         <div className="post-small-image">
-            <A href={link}><img src={post.previewPath} alt={post.header} className="img-preview"/></A>
+            <A href={link}><img src={post.photoPath} alt={post.header} className="img-preview"/></A>
         </div>
         <div className="post-small-content">
             {!post.isMassMedia && <div><A href={link}><DateFormat date={post.date}/></A></div>}

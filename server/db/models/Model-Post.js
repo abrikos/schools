@@ -8,7 +8,7 @@ const modelSchema = new Schema({
         header: {type: String, label: 'Заголовок'},
         text: {type: String, label: 'Текст', control:'markdown'},
         url: {type: String, label: 'Адрес на сайте СМИ'},
-        isMarkdown: {type: Boolean, label: 'Markdown'},
+        isHtml: {type: Boolean, label: 'as Html'},
         editable: Boolean,
         published: {type: Boolean, label: 'Опубликовано'},
         isMassMedia: {type: Boolean, label: 'СМИ о нас'},
@@ -46,7 +46,7 @@ modelSchema.virtual('date')
 
     });
 
-modelSchema.virtual('previewPath')
+modelSchema.virtual('photoPath')
     .get(function () {
         return this.photo ? this.photo.path : '/noImage.png'
     });
