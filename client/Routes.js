@@ -12,6 +12,7 @@ import NewsPage from "client/pages/news/NewsPage";
 import ModelList from "client/pages/model/ModelList";
 import SchoolFull from "client/pages/school/SchoolFull";
 import PersonView from "client/pages/person/PersonView";
+import StaticPage from "client/pages/static/StaticPage";
 
 export default function Routes(props) {
 
@@ -39,5 +40,6 @@ export default function Routes(props) {
         //"/persons/:type": (params) => <PersonListLarge {...params} {...props}/>,
         "/site-map": () => <SiteMap {...props}/>,
         "/search/:code": (params) => <SearchResult {...params} {...props}/>,
+        "/page/:id/:header": (params) => <StaticPage {...params} {...props}/>,
     };
 }

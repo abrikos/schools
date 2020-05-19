@@ -13,7 +13,7 @@ export default function MenuTop(props) {
 
     const items = [
         {label: 'Начало', path: '/'},
-        {label: 'О нас', path: '/about'},
+        {label: 'О нас', path: '/page/5ec3a3d6edcb4d358b7a39f6/-O-sozdanii-seti-Prezidentskih-shkol-Respubliki-Saha--Yakutiya-'},
         {label: 'Основатель школ М.Е.Николаев', path: '/founder'},
         {label: 'Школы', path: '/schools'},
         {label: 'Новости', path: '/news'},
@@ -23,8 +23,8 @@ export default function MenuTop(props) {
     ]
 
     return <div>
-        <div className="d-sm-flex d-none top-menu-full justify-content-center">
-            {items.map((item, i) => <h5 key={i} className={`${isActive(item.path) ? '' : 'blue-box'} p-2 m-2 d-flex align-content-center text-center`} style={{flex: 1}}><A className="m-auto" href={item.path}>{item.label}</A></h5>)}
+        <div className="top-menu-full">
+            {items.map((item, i) => <h5 key={i} className={`${isActive(item.path) ? '' : 'blue-box'} p-2 d-flex align-content-center text-center`} style={{flex: 1}}><A className="m-auto" href={item.path}>{item.label}</A></h5>)}
         </div>
         <Navbar light expand="xl" className="top-menu-mobile d-block d-sm-none">
             <NavbarToggler onClick={e => pullMenu(!menuPulled)} className="dark"/>

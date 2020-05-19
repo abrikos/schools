@@ -1,6 +1,14 @@
 @import "../../components/themes/params"
 
 .home
+  table.projects
+    border-collapse: separate
+    border-spacing: 10px
+    td
+      text-align: center
+      width: 50%
+      border: 1px solid #0c5460
+      padding: 10px
   .first-news
     margin-bottom: 10px
     .first-news-img
@@ -14,22 +22,17 @@
       height: 120px
 
   .post-small
+    height: 50%
     box-shadow: none
     display: flex
-    @media screen and (min-width: $min-width)
-      width: 40%
-    height: 100px
     .post-small-text
       display: none
     .post-small-content
-      overflow: hidden
       padding: 0 10px
       width: 70%
-      h5
-        font-size: .8em
     .post-small-image
       width: 30%
-      overflow: hidden
+
   .pages
     a
       display: block

@@ -7,6 +7,7 @@ const passportLib = require('server/lib/passport');
 
 module.exports.controller = function (app) {
 
+/*
     function bodyToWhere(body) {
         if (!body.where) body.where = {};
         body.where.published = true;
@@ -89,6 +90,7 @@ module.exports.controller = function (app) {
                 res.sendStatus(200);
             })
     });
+*/
 
 }
 ;

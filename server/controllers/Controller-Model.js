@@ -1,4 +1,5 @@
 import Mongoose from "server/db/Mongoose";
+import striptags from "striptags";
 
 const passportLib = require('server/lib/passport');
 //const passport = require('passport');
@@ -179,6 +180,45 @@ module.exports.controller = function (app) {
                     });
 
             })
+            .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
+    });
+
+    app.get('/api/:model/share/:id', (req, res) => {
+        Mongoose[req.params.model].findById(req.params.id)
+            .populate(Mongoose.post.population)
+            .then(post => res.render('post', {
+                header: post.header,
+                text: striptags(post.text),
+                image: req.protocol + '://' + req.get('host') + (post.photo ? post.photo.path : '/logo.svg'),
+                url: req.protocol + '://' + req.get('host') + '/post/' + post.id
+            }))
+            .catch(e => res.send(app.locals.sendError({error: 404, message: e.message})))
+    });
+
+
+    function bodyToWhere(body) {
+        if (!body.where) body.where = {};
+        body.where.published = true;
+        for(const f in body.where){
+            if(!body.where[f]) delete body.where[f];
+        }
+        if (body.where.text) {
+            body.where.$or =[{text:new RegExp(body.where.text, 'i')},{header:new RegExp(body.where.text, 'i')},]
+            delete body.where.text;
+        } else {
+            delete body.where.text;
+        }
+        return body.where;
+    }
+
+    app.post('/api/:model/search', (req, res) => {
+        const filter = bodyToWhere(req.body);
+        Mongoose[req.params.model].find(filter)
+            .sort({createdAt: -1})
+            .limit(parseInt(req.body.limit) || 10)
+            .skip(parseInt(req.body.skip))
+            .populate(Mongoose.post.population)
+            .then(items => res.send(items))
             .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
     });
 
