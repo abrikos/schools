@@ -13,7 +13,7 @@ export default function ModelList(props) {
         if(!f.limit) f.limit = 12;
         f.skip = 0;
         setFilter(f);
-        props.api(`/${props.model}/list`, f)
+        props.api(`/${props.modelName}/list`, f)
             .then(res=>{
                 setList(res.list)
                 setTotalCount(res.count);
@@ -21,14 +21,14 @@ export default function ModelList(props) {
     },[])
 
     function pageChange(f) {
-        props.api(`/${props.model}/list`, f).then(res=>setList(res.list));
+        props.api(`/${props.modelName}/list`, f).then(res=>setList(res.list));
     }
 
-    return <div className={`${props.model}-list`}>
+    return <div className={`${props.modelName}-list`}>
         <h2 className="text-center">{props.title}</h2>
         <div className="list-wrapper">
-            {list.map(item=><div key={item.id}>
-                {views[`${props.model}Small`](item)}
+            {list.map(item=><div key={item.id} className="grid-cell">
+                {views[`${props.modelName}Small`]({...item, ...props})}
             </div>)}
         </div>
 

@@ -61,7 +61,7 @@ export default function Home(props) {
                 <table className="projects">
                     <tbody>
                     <tr>
-                        <td>Навигатор директора СШ</td>
+                        <td className="colored"><A href='/directors'>Навигатор директора СШ</A></td>
                         <td>Учителям</td>
                     </tr>
                     <tr>
