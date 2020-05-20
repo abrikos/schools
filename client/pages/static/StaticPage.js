@@ -5,6 +5,8 @@ import "client/pages/news/post.sass"
 import HtmlView from "client/components/HtmlView";
 import AdminLink from "client/components/AdminLink";
 import MarkDown from "react-markdown";
+import "./static-page.sass"
+import ImageView from "client/components/ImageView";
 
 export default function StaticPage(props) {
     const [post, setPost] = useState({});
@@ -34,8 +36,8 @@ export default function StaticPage(props) {
                 <div className="col-sm-8">
                     {post.isHtml ? <HtmlView text={post.text}/> : <MarkDown source={post.text}/>}
                 </div>
-                <div className="col-sm-4 d-flex flex-column-reverse">
-                    {post.files.filter(i => i.isImage).map(f => <img src={f.path} className="img-fluid"/>)}
+                <div className="col-sm-4 static-page-images">
+                    {post.files.filter(i => i.isImage).map(f => <ImageView src={f.path} className="img-fluid"/>)}
                 </div>
             </div>
             <ShareButtons link={apiLink}/>

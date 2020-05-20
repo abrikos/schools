@@ -23,7 +23,7 @@ export default function MenuTop(props) {
     ]
 
     return <div>
-        <div className="top-menu-full">
+        <div className="d-sm-block d-none top-menu-full">
             {items.map((item, i) => <h5 key={i} className={`${isActive(item.path) ? '' : 'blue-box'} p-2 d-flex align-content-center text-center`} style={{flex: 1}}><A className="m-auto" href={item.path}>{item.label}</A></h5>)}
         </div>
         <Navbar light expand="xl" className="top-menu-mobile d-block d-sm-none">
