@@ -14,7 +14,7 @@ export default function MenuTop(props) {
     const items = [
         {label: 'Начало', path: '/'},
         {label: 'О нас', path: '/page/5ec3a3d6edcb4d358b7a39f6/-O-sozdanii-seti-Prezidentskih-shkol-Respubliki-Saha--Yakutiya-'},
-        {label: 'Основатель школ М.Е.Николаев', path: '/founder'},
+        {label: 'Основатель школ М.Е.Николаев', path: '/page/5ec49329297e101efe7714f8/Liniya-zhizni-Pervogo-Prezidenta-Respubliki-Saha--Yakutiya--'},
         {label: 'Школы', path: '/schools'},
         {label: 'Новости', path: '/news'},
         {label: 'Содержание образования', path: '/content'},

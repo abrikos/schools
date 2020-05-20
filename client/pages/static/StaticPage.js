@@ -34,7 +34,7 @@ export default function StaticPage(props) {
                 <div className="col-sm-8">
                     {post.isHtml ? <HtmlView text={post.text}/> : <MarkDown source={post.text}/>}
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-4 d-flex flex-column-reverse">
                     {post.files.filter(i => i.isImage).map(f => <img src={f.path} className="img-fluid"/>)}
                 </div>
             </div>

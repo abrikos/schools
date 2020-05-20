@@ -6,8 +6,6 @@ const Schema = mongoose.Schema;
 
 const modelSchema = new Schema({
         header: {type: String, label: 'Заголовок'},
-        path: {type: String, label: 'Путь', unique:true},
-
         text: {type: String, label: 'Текст', control:'markdown'},
         isHtml: {type: Boolean, label: 'as Html'},
         css: {type: String, label: 'Css', control:'markdown'},

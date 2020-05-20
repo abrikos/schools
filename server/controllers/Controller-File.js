@@ -1,4 +1,5 @@
 import Mongoose from "server/db/Mongoose";
+const fs = require('fs')
 
 const passportLib = require('server/lib/passport');
 //Mongoose.Post.findOne({_id:'5e6b377260ee8707805367b6'})    .populate('token')    .then(console.log)
@@ -27,8 +28,10 @@ module.exports.controller = function (app) {
         if (!Mongoose.Types.ObjectId.isValid(req.params.id)) return res.send(app.locals.sendError({error: 404, message: 'Wrong ID'}))
 
         Mongoose.file.findById(req.params.id)
-            .then(img => {
-                img.delete()
+            .then(file => {
+                fs.unlinkSync(`.${file.path}`)
+                file.delete()
+
                 res.sendStatus(200);
             })
     });
