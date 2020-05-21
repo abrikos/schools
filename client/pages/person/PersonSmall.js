@@ -7,6 +7,7 @@ import "./person.sass"
 
 export default function (props) {
     const p = props;
+    console.log(p)
     return <div className="person-small">
         <strong><A href={p.link}>{p.fio}</A></strong>
         <div className="row">
@@ -15,7 +16,7 @@ export default function (props) {
             </div>
             <div className="col-8 d-flex flex-column justify-content-center">
                 <div className="person-info">
-                    <span className="division">{p.statusName}</span>
+                    <span className="division">{p.school ? p.school.name : '-'}</span>
                     <span className="rank">{p.rank}</span>
                     <i className="status">{props.presidium ? props.status : p.status}</i>
                 </div>
