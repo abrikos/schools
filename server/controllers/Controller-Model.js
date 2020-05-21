@@ -185,16 +185,17 @@ module.exports.controller = function (app) {
     });
 
     app.get('/api/:model/share/:id', (req, res) => {
-        Mongoose[req.params.model].findById(req.params.id)
+        Mongoose.post.findById(req.params.id)
             .populate(Mongoose.post.population)
             .then(post => res.render('post', {
-                header: post.header,
+                header: `${process.env.SITE_NAME} - ${removeMd(post.header)}`,
                 text: striptags(post.text),
-                image: req.protocol + '://' + req.get('host') + (post.photo ? post.photo.path : '/logo.svg'),
+                image: req.protocol + '://' + req.get('host') + (post.image ? post.image.path : '/logo.svg'),
                 url: req.protocol + '://' + req.get('host') + '/post/' + post.id
             }))
-            .catch(e => res.send(app.locals.sendError({error: 404, message: e.message})))
+            .catch(e => res.send(app.locals.sendError(e)))
     });
+
 
 
 
