@@ -87,7 +87,7 @@ const strategyFunctions = {
         const url = `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${req.body.accessToken}`;
         const response = await axios(url);
         const data = response.data;
-        return getUser(data.user_id, req.params.strategy, req.body.Pt.Ad, req.body.profileObj.imageUrl)
+        return getUser(data.user_id, req.params.strategy, req.body.profileObj.name, req.body.profileObj.imageUrl)
     },
 
     vk:async (req)=> {
