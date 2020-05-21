@@ -190,8 +190,8 @@ module.exports.controller = function (app) {
             .then(post => res.render('post', {
                 header: `${process.env.SITE_NAME} - ${removeMd(post.header)}`,
                 text: removeMd(striptags(post.text)),
-                image: req.protocol + '://' + req.get('host') + (post.image ? post.image.path : '/logo.svg'),
-                url: req.protocol + '://' + req.get('host') + '/post/' + post.id
+                image: req.protocol + '://' + req.get('host') + (post.photo ? post.photo.path : '/logo.svg'),
+                url: req.protocol + '://' + req.get('host') + post.link
             }))
             .catch(e => res.send(app.locals.sendError(e)))
     });
