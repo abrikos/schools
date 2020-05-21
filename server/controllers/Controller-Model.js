@@ -185,11 +185,11 @@ module.exports.controller = function (app) {
     });
 
     app.get('/api/:model/share/:id', (req, res) => {
-        Mongoose.post.findById(req.params.id)
-            .populate(Mongoose.post.population)
+        Mongoose[req.params.model].findById(req.params.id)
+            .populate(Mongoose[req.params.model].population)
             .then(post => res.render('post', {
                 header: `${process.env.SITE_NAME} - ${removeMd(post.header)}`,
-                text: striptags(post.text),
+                text: removeMd(striptags(post.text)),
                 image: req.protocol + '://' + req.get('host') + (post.image ? post.image.path : '/logo.svg'),
                 url: req.protocol + '://' + req.get('host') + '/post/' + post.id
             }))
