@@ -13,6 +13,7 @@ export default function ModelList(props) {
         if(!f.limit) f.limit = 12;
         f.skip = 0;
         setFilter(f);
+        console.log(f)
         props.api(`/${props.modelName}/list`, f)
             .then(res=>{
                 setList(res.list)

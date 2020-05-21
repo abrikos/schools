@@ -25,7 +25,7 @@ export default function Routes(props) {
 
         "/schools": () => <ModelList key={'school'} title="Школы" modelName="school" filter={{order:'name'}} {...props}/>,
         "/news": () => <ModelList key={'news'} title="Новости" modelName="post" filter={{order: {createdAt:-1}}} {...props}/>,
-        "/directors": (params) => <ModelList  key={'directors'} title="Директора школ" modelName="person" filter={{statusId:1}} {...props}/>,
+        "/directors": (params) => <ModelList  key={'directors'} title="Директора школ" modelName="person" filter={{where: {statusId: 1}}} {...props}/>,
 
         "/wp-admin": () => <Login {...props}/>,
         "/admin/:control": (params) => <AdminIndex {...params} {...props}/>,
