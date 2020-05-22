@@ -137,7 +137,7 @@ export default function (props) {
             <Button onClick={()=>navigate(`/admin/${modelName}`)} color="warning">Закрыть</Button>
             <A href={model.link}>Смотреть</A>
             <div className="row">
-                <div className="col-11">
+                <div className="col-10">
                     <form onSubmit={submit} key={model.id} onChange={() => setEdited(true)} className="form-model">
                         {edited && <Button>Сохранить</Button>}
                         <div className="admin-form-fields">
@@ -147,7 +147,7 @@ export default function (props) {
                     </form>
 
                 </div>
-                <div className="col-1">
+                <div className="col-2">
                     <img src={model.photoPath} alt={model.id} className="img-fluid"/>
                     <FileUpload uploadDone={uploadDone} {...props}/>
                     {model.files && <FileList

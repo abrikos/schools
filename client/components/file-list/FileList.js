@@ -18,13 +18,13 @@ export default function FileList(props) {
     const toggle = () => setModal(!modal);
 
     function deleteImage(img) {
-        if(!window.confirm('Удалить изображение?')) return;
-        props.api('/file/delete/'+img.id)
+        if (!window.confirm('Удалить изображение?')) return;
+        props.api('/file/delete/' + img.id)
             .then(() => {
                 const del = [...deleted];
                 del.push(img.id);
                 setDeleted(del);
-                if(props.onDelete) props.onDelete()
+                if (props.onDelete) props.onDelete()
             })
     }
 
@@ -34,15 +34,19 @@ export default function FileList(props) {
         toggle();
     }
 
-    if(!props.files) return <div/>;
+    function setOrder(e) {
+        //props.api(`/file/order/${img.id}/${e.target.value}`)
+    }
+
+    if (!props.files) return <div/>;
     return <div className="image-list">
         {props.files.filter(img => !deleted.includes(img.id)).map((img, i) => <div key={i} className="image-cell">
-            <div className="img-tools">
+            {props.editable && img.id && <div className="img-tools">
                 {props.controls}
-                {props.editable  && img.id && props.setPreview &&  <Button size="sm" color="success" onClick={() => props.setPreview(img)}>👁</Button>}
-                {props.editable  && img.id && <Button size="sm" color="danger" onClick={() => deleteImage(img)}>🗑</Button>}
+                {props.setPreview && <Button size="sm" color="success" onClick={() => props.setPreview(img)}>👁</Button>}
+                {<Button size="sm" color="danger" onClick={() => deleteImage(img)}>🗑</Button>}
 
-            </div>
+            </div>}
             <div className="img-container">
                 {img.error ?
                     <small>
@@ -50,7 +54,8 @@ export default function FileList(props) {
                         <strong>{img.file.name}</strong> <br/> <small className="error">{(img.file.size / 1024 / 1024).toFixed(1)} Mb</small> </small>
                     :
                     <img src={img.path || img} alt={img.path} onClick={() => showImage(img)}/>}
-            </div>
+                {/*{props.editable && img.id && <input value={img.order} onChange={setOrder} type="number"/>}*/}
+                    </div>
         </div>)}
         <Modal isOpen={modal} toggle={toggle} backdrop={true} keyboard={true}>
             <ModalHeader toggle={toggle}></ModalHeader>

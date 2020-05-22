@@ -7,6 +7,7 @@ const modelSchema = new Schema({
         extension: String,
         name: String,
         description: String,
+        order: Number,
 
     },
     {
@@ -19,7 +20,7 @@ const modelSchema = new Schema({
 
 modelSchema.virtual('isImage')
     .get(function () {
-        return this.extension && ['jpeg','png','svg','jpg'].includes(this.extension.toLowerCase());
+        return this.extension && ['jpeg', 'png', 'svg', 'jpg'].includes(this.extension.toLowerCase());
     });
 
 modelSchema.virtual('path')
