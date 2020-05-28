@@ -71,6 +71,11 @@ export default function Home(props) {
                     <tr>
                         <td colSpan={2}>Библиотека</td>
                     </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <a href="https://drive.google.com/open?id=18oYkDMm-rmDpRHuTRd_MIItGs8pm7fa-" target="_blank">Стратегия пять шагов модернизации</a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
