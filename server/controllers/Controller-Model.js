@@ -184,10 +184,10 @@ module.exports.controller = function (app) {
             .catch(e => res.send(app.locals.sendError({error: 500, message: e.message})))
     });
 
-    app.get('/api/:model/share/:id', (req, res) => {
+    app.get('/api/:model/share/:id/:link', (req, res) => {
         Mongoose[req.params.model].findById(req.params.id)
             .populate(Mongoose[req.params.model].population)
-            .then(post => res.render('post', {
+            .then(post => res.render('share', {
                 header: `${process.env.SITE_NAME} - ${removeMd(post.header)}`,
                 text: removeMd(striptags(post.text)),
                 image: req.protocol + '://' + req.get('host') + (post.photo ? post.photo.path : '/logo.svg'),
