@@ -4,6 +4,7 @@ import AdminLink from "client/components/AdminLink";
 import MarkDown from "react-markdown";
 import Email from "client/components/Email";
 import Phone from "client/components/Phone";
+import ShareButtons from "client/components/share-button/ShareButtons";
 
 export default function (props) {
     const modelName = 'school';
@@ -34,6 +35,8 @@ export default function (props) {
 
         <MarkDown source={model.description}/>
         {model.educationContent && <div><h3>Содержание образования</h3><hr/><MarkDown source={model.educationContent}/></div>}
+
+        <ShareButtons link={model.shareLink}/>
 
     </div>
 }

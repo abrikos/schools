@@ -72,6 +72,11 @@ modelSchema.virtual('link')
         return `/school/` + this.id + '/' + (this.name ? transliterate(this.name).replace(/[^a-zA-Z0-9]/g, '-') : '')
     });
 
+modelSchema.virtual('shareLink')
+    .get(function () {
+        return `/api/school/share/` + this.id + '/' + (this.name ? transliterate(this.name).replace(/[^a-zA-Z0-9]/g, '-') : '')
+    });
+
 
 export default mongoose.model("School", modelSchema)
 
