@@ -1,9 +1,10 @@
 import React from "react";
 import Icons from "client/files/social.jpg";
 import "./share-button.sass"
+import CopyButton from "client/components/copy-button/CopyButton";
 
 export default function ShareButtons(props) {
-
+    const link = window.location.origin + props.link;
     const blogs = [
         {row: 0, col: 1, link: 'https://vk.com/share.php?url='},
         {row: 0, col: 2, link: 'https://www.facebook.com/sharer/sharer.php?u='},
@@ -13,13 +14,11 @@ export default function ShareButtons(props) {
     ];
     const params = {cols: 6, offsetX: 102, offsetY: 20, iconWidth: 113, iconHeight: 113, spaceX: 28, spaceY: 27, percent: .4};
 
-    function goTo(path) {
-        return path + encodeURIComponent(props.link);
-    }
 
     return <div>
         <h3 className="text-center">Поделись с друзьями</h3>
-        <code>{props.link}</code>
+        <code>{link}</code>
+        <CopyButton text={link}/>
         <div className="share-button d-flex justify-content-center flex-wrap">
             {blogs.map((b, i) => {
                 const x = params.offsetX + (params.iconWidth + params.spaceX) * b.col;
@@ -32,7 +31,7 @@ export default function ShareButtons(props) {
                     backgroundPosition: `-${x}px -${y}px`,
                     cursor: 'pointer'
                 };
-                return <a key={i} className="share-icon" style={style} href={goTo(b.link)} target="_blank" rel="noopener noreferrer">{' '}</a>
+                return <a key={i} className="share-icon" style={style} href={b.link + encodeURIComponent(link)} target="_blank" rel="noopener noreferrer">{' '}</a>
             })}
         </div>
         {/*<img src={Icons} className="border"/>*/}
