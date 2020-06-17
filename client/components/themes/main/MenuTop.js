@@ -17,7 +17,7 @@ export default function MenuTop(props) {
         {label: 'Основатель школ М.Е.Николаев', path: '/page/5ec49329297e101efe7714f8/Liniya-zhizni-Pervogo-Prezidenta-Respubliki-Saha--Yakutiya--'},
         {label: 'Школы', path: '/schools'},
         {label: 'Новости', path: '/news'},
-        {label: 'Содержание образования', path: '/content'},
+        {label: 'Содержание образования', path: '/education-content'},
         {label: 'Стратегия развития', path: '/strategy'},
         {label: 'План мероприятий', path: '/plan'},
     ]

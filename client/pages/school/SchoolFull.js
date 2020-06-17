@@ -33,6 +33,7 @@ export default function (props) {
         </div>
 
         <MarkDown source={model.description}/>
+        {model.educationContent && <div><h3>Содержание образования</h3><hr/><MarkDown source={model.educationContent}/></div>}
 
     </div>
 }

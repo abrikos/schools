@@ -13,6 +13,7 @@ import ModelList from "client/pages/model/ModelList";
 import SchoolFull from "client/pages/school/SchoolFull";
 import PersonView from "client/pages/person/PersonView";
 import StaticPage from "client/pages/static/StaticPage";
+import TextPage from "client/pages/text-page/TextPage";
 
 export default function Routes(props) {
 
@@ -21,8 +22,10 @@ export default function Routes(props) {
         "/cabinet": () => <Cabinet {...props}/>,
         "/search": () => <Search {...props}/>,
         "/contacts": () => <Contacts {...props}/>,
+        "/text/:id": (params) => <TextPage {...params} {...props}/>,
         "/login": () => <Login {...props}/>,
 
+        "/education-content": () => <ModelList key={'ed-content'} title="Содержание образования" modelName="school" filter={{order:'name', where:{educationContent:{$ne:null}}}} {...props}/>,
         "/schools": () => <ModelList key={'school'} title="Школы" modelName="school" filter={{order:'name'}} {...props}/>,
         "/news": () => <ModelList key={'news'} title="Новости" modelName="post" filter={{order: {createdAt:-1}}} {...props}/>,
         "/directors": (params) => <ModelList  key={'directors'} title="Директора школ" modelName="person" filter={{where: {statusId: 1}}} {...props}/>,

@@ -13,6 +13,7 @@ const modelSchema = new Schema({
         phone: {type: String, label: 'Телефон'},
         //path: {type: String, label: 'Путь'},
         description: {type: String, label: 'Описание', control:'markdown'},
+        educationContent: {type: String, label: 'Содержание образования', control:'markdown'},
         //director: {type: mongoose.Schema.Types.ObjectId, ref: 'Person'},
         photo: {type: mongoose.Schema.Types.ObjectId, ref: 'File'},
         files: [{type: mongoose.Schema.Types.ObjectId, ref: 'File'}],
