@@ -188,15 +188,13 @@ module.exports.controller = function (app) {
         Mongoose[req.params.model].findById(req.params.id)
             .populate(Mongoose[req.params.model].population)
             .then(post => res.render('share', {
-                header: `${process.env.SITE_NAME} - ${removeMd(post.header)}`,
-                text: removeMd(striptags(post.text)),
+                header: `${process.env.SITE_NAME} - ${removeMd(post.header || post.name)}`,
+                text: removeMd(striptags(post.text || post.description)),
                 image: req.protocol + '://' + req.get('host') + (post.photo ? post.photo.path : '/logo.svg'),
                 url: req.protocol + '://' + req.get('host') + post.link
             }))
             .catch(e => res.send(app.locals.sendError(e)))
     });
-
-
 
 
     app.post('/api/:model/search', (req, res) => {
