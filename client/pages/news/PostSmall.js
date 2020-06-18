@@ -7,7 +7,7 @@ import MarkDown from "react-markdown";
 
 export default function PostSmall(props) {
     PostSmall.propTypes = {
-        post: PropTypes.object.isRequired,
+        //post: PropTypes.object.isRequired,
         isAdmin: PropTypes.bool,
     };
 
@@ -15,11 +15,11 @@ export default function PostSmall(props) {
     const link = props.isAdmin ? post.adminLink : post.link;
     return <div className={`post-small`}>
         <div className="post-small-image">
-            <A href={link}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
+            <A href={link || '#'}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
         </div>
         <div className="post-small-content">
-            <small><A href={link}>{post.header}</A></small>
-            <div><A href={link}><DateFormat date={post.date}/></A></div>
+            <small><A href={link || '#'}>{post.header}</A></small>
+            <div><A href={link || '#'}><DateFormat date={post.date}/></A></div>
         </div>
     </div>;
 }

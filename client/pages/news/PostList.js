@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import PostSmall from "client/pages/news/PostSmall";
 import Pager from "client/components/Pager";
 import Loader from "client/components/Loader";
+import PropTypes from "prop-types";
 
 export default function (props) {
     /*this.propTypes = {
@@ -35,7 +36,7 @@ export default function (props) {
     return <div className="post-list">
         {totalCount>=0 && <div className="m-3 text-center">Найдено: {totalCount}</div>}
         <div className="d-flex flex-wrap">
-            {posts.map(p => <PostSmall isAdmin={props.isAdmin} key={p.id} post={p}/>)}
+            {posts.map(p => <PostSmall isAdmin={props.isAdmin} key={p.id} {...p}/>)}
         </div>
         {filter && !!totalCount && <Pager count={totalCount} filter={filter} onPageChange={pageChange}/>}
     </div>

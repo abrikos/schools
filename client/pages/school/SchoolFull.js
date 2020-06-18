@@ -5,14 +5,27 @@ import MarkDown from "react-markdown";
 import Email from "client/components/Email";
 import Phone from "client/components/Phone";
 import ShareButtons from "client/components/share-button/ShareButtons";
+import PostSmall from "client/pages/news/PostSmall";
+import PostList from "client/pages/news/PostList";
 
 export default function (props) {
     const modelName = 'school';
     const [model, setModel] = useState();
+    const [news, setNews] = useState([]);
+    const newsFilter = {where: {school: props.id}}
 
     useEffect(() => {
         props.api(`/${modelName}/${props.id}/view`)
             .then(setModel)
+        props.api(`/post/list`, {
+
+            where: {
+                school: props.id
+            }
+
+        })
+            .then(r => setNews(r.list))
+
     }, [])
 
     if (!model) return <div></div>
@@ -30,11 +43,18 @@ export default function (props) {
             <div className="col-sm-4">
                 {director && <PersonSmall {...director} {...props}/>}
                 {model.persons.filter(p => p.statusId !== 1).map(p => <PersonSmall key={p.id} {...p} {...props}/>)}
+                {news.length > 0 && <div>
+                    <h3 className="text-center">Новости</h3>
+                    <PostList filter={newsFilter} {...props}/>
+                    {/*{news.map(n => <div key={n.id}><PostSmall {...n}/></div>)}*/}
+                </div>}
             </div>
         </div>
 
         <MarkDown source={model.description}/>
-        {model.educationContent && <div><h3>Содержание образования</h3><hr/><MarkDown source={model.educationContent}/></div>}
+        {model.educationContent && <div><h3>Содержание образования</h3>
+            <hr/>
+            <MarkDown source={model.educationContent}/></div>}
 
         <ShareButtons link={model.shareLink}/>
 

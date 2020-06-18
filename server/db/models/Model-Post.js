@@ -11,11 +11,10 @@ const modelSchema = new Schema({
         isHtml: {type: Boolean, label: 'as Html'},
         editable: Boolean,
         published: {type: Boolean, label: 'Опубликовано'},
-        isMassMedia: {type: Boolean, label: 'СМИ о нас'},
-        isElection: {type: Boolean, label: 'Выборы'},
         views: {type: Number, default: 0},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         files: [{type: mongoose.Schema.Types.ObjectId, ref: 'File'}],
+        school: {type: mongoose.Schema.Types.ObjectId, ref: 'School', property:'name', sort:{name:1}, label:'Школа'},
         photo: {type: mongoose.Schema.Types.ObjectId, ref: 'File'},
 
     },
