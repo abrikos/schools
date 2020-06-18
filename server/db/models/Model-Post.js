@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 const modelSchema = new Schema({
         header: {type: String, label: 'Заголовок'},
-        text: {type: String, label: 'Текст', control:'markdown'},
+        text: {type: String, label: 'Текст', control: 'markdown'},
         url: {type: String, label: 'Адрес на сайте СМИ'},
         isHtml: {type: Boolean, label: 'as Html'},
         editable: Boolean,
@@ -14,7 +14,7 @@ const modelSchema = new Schema({
         views: {type: Number, default: 0},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         files: [{type: mongoose.Schema.Types.ObjectId, ref: 'File'}],
-        school: {type: mongoose.Schema.Types.ObjectId, ref: 'School', property:'name', sort:{name:1}, label:'Школа'},
+        school: {type: mongoose.Schema.Types.ObjectId, ref: 'School', property: 'name', sort: {name: 1}, label: 'Школа'},
         photo: {type: mongoose.Schema.Types.ObjectId, ref: 'File'},
 
     },

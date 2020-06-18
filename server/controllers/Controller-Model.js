@@ -24,6 +24,7 @@ module.exports.controller = function (app) {
                 })
 
         }
+        ret.fields.push({name:'date', type:'String', options:{}})
         if (schema.formOptions) {
             ret.fields = ret.fields.concat(schema.formOptions.virtualFields ? schema.formOptions.virtualFields.map(f => {
                 const ret = {
