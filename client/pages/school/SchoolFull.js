@@ -29,11 +29,15 @@ export default function (props) {
     }, [])
 
     if (!model) return <div></div>
+    console.log(model)
     const director = model.persons.find(p => p.statusId === 1);
     return <div className={`${modelName}-full`}>
         <h2 className="text-center">{model.name} <AdminLink model={model} {...props}/></h2>
         <div className="row">
-            <div className="col-sm-4"><img src={model.photoPath} alt={model.name} className="img-fluid"/></div>
+            <div className="col-sm-4">
+                <img src={model.photoPath} alt={model.name} className="img-fluid"/>
+                {model.files.filter(f=>f.path!==model.photoPath).map(f=><img src={f.path} alt={model.name} className="img-fluid"/>)}
+            </div>
             <div className="col-sm-4 p-2">
                 Сайт: <a href={model.site}>{model.site}</a><br/>
                 <Email email={model.email}/><br/>

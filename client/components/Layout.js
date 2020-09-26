@@ -12,8 +12,9 @@ import siteMap from "client/components/site-map-compiled.json"
 export default function LayoutMenuTop(props) {
 
     let routeResult = useRoutes(routes(props));
-    if (window.location.pathname.match(/^\/admin/)) return <ThemeAdmin routeResult={routeResult} {...props}/>
+
     return <div>
+        {window.location.pathname.match(/^\/admin/) && <ThemeAdmin routeResult={routeResult} {...props}/>}
         {props.theme === 'horizontal' && <ThemeMain routeResult={routeResult} {...props}/>}
     </div>
 }

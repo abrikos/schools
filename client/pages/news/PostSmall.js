@@ -18,8 +18,9 @@ export default function PostSmall(props) {
             <A href={link || '#'}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
         </div>
         <div className="post-small-content">
-            <small><A href={link || '#'}>{post.header}</A></small>
             <div><A href={link || '#'}><DateFormat date={post.date}/></A></div>
+            <small><A href={link || '#'}>{post.header}</A></small>
+
         </div>
     </div>;
 }
