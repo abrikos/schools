@@ -31,7 +31,7 @@ export default function (props) {
     if (!model) return <div></div>
     console.log(model)
     const director = model.persons.find(p => p.statusId === 1);
-    return <div className={`${modelName}-full`}>
+    return <div className={`${modelName}-full p-2`}>
         <h2 className="text-center">{model.name} <AdminLink model={model} {...props}/></h2>
         <div className="row">
             <div className="col-sm-4">
