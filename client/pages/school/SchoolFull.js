@@ -5,7 +5,6 @@ import MarkDown from "react-markdown";
 import Email from "client/components/Email";
 import Phone from "client/components/Phone";
 import ShareButtons from "client/components/share-button/ShareButtons";
-import PostSmall from "client/pages/news/PostSmall";
 import PostList from "client/pages/news/PostList";
 
 export default function (props) {
@@ -36,18 +35,19 @@ export default function (props) {
         <div className="row">
             <div className="col-sm-4">
                 <img src={model.photoPath} alt={model.name} className="img-fluid"/>
-                {model.files.filter(f=>f.path!==model.photoPath).map(f=><img src={f.path} alt={model.name} className="img-fluid"/>)}
+                {model.files.filter(f => f.path !== model.photoPath).map(f => <img src={f.path} alt={model.name} className="img-fluid"/>)}
             </div>
-            <div className="col-sm-4 p-2">
-                {model.site && <div><a href={model.site}>{model.site}</a></div>}
-                <Email email={model.email}/><br/>
-                <Phone phone={model.phone}/><br/>
-                Адрес: {model.address}
-                <hr/>
-                <div className="text-justify"><MarkDown source={model.description}/></div>
-
+            <div className="col-sm">
+                <div className=" p-2">
+                    {model.site && <div><a href={model.site}>{model.site}</a></div>}
+                    <Email email={model.email}/><br/>
+                    <Phone phone={model.phone}/><br/>
+                    Адрес: {model.address}
+                    <hr/>
+                    <div className="text-justify"><MarkDown source={model.description}/></div>
+                </div>
             </div>
-            <div className="col-sm-4">
+            {director || !!model.persons.length || !!news.length && <div className="col-sm">
                 {director && <PersonSmall {...director} {...props}/>}
                 {model.persons.filter(p => p.statusId !== 1).map(p => <PersonSmall key={p.id} {...p} {...props}/>)}
                 {news.length > 0 && <div>
@@ -55,7 +55,7 @@ export default function (props) {
                     <PostList filter={newsFilter} {...props}/>
                     {/*{news.map(n => <div key={n.id}><PostSmall {...n}/></div>)}*/}
                 </div>}
-            </div>
+            </div>}
         </div>
 
 
