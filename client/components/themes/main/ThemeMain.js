@@ -12,7 +12,7 @@ export default function ThemeMain(props) {
     return <div className="container theme-main">
 
         <div className="row">
-            <div className="col-sm-2"><img src={nikolaev} id="nikolaev" className="img-fluid"/></div>
+            <div className="col-sm-2 p-4"><img src={nikolaev} id="nikolaev" className="img-fluid"/></div>
             <div className="col-sm-10">
                 <div className="d-flex h-100">
                     <h2 className="m-auto border-left p-2">Сеть школ первого Президента Республики Саха (Якутия) М.Е. Николаева</h2>

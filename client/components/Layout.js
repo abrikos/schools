@@ -14,8 +14,8 @@ export default function LayoutMenuTop(props) {
     let routeResult = useRoutes(routes(props));
 
     return <div>
-        {window.location.pathname.match(/^\/admin/) && <ThemeAdmin routeResult={routeResult} {...props}/>}
-        {props.theme === 'horizontal' && <ThemeMain routeResult={routeResult} {...props}/>}
+        {window.location.pathname.match(/^\/admin/) ? <ThemeAdmin routeResult={routeResult} {...props}/>:<ThemeMain routeResult={routeResult} {...props}/>}
+
     </div>
 }
 

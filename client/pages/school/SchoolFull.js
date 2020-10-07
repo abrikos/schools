@@ -31,7 +31,7 @@ export default function (props) {
     if (!model) return <div></div>
     console.log(model)
     const director = model.persons.find(p => p.statusId === 1);
-    return <div className={`${modelName}-full p-2`}>
+    return <div className={`${modelName}-full p-0`}>
         <h2 className="text-center">{model.name} <AdminLink model={model} {...props}/></h2>
         <div className="row">
             <div className="col-sm-4">
@@ -39,10 +39,13 @@ export default function (props) {
                 {model.files.filter(f=>f.path!==model.photoPath).map(f=><img src={f.path} alt={model.name} className="img-fluid"/>)}
             </div>
             <div className="col-sm-4 p-2">
-                Сайт: <a href={model.site}>{model.site}</a><br/>
+                {model.site && <div><a href={model.site}>{model.site}</a></div>}
                 <Email email={model.email}/><br/>
                 <Phone phone={model.phone}/><br/>
                 Адрес: {model.address}
+                <hr/>
+                <div className="text-justify"><MarkDown source={model.description}/></div>
+
             </div>
             <div className="col-sm-4">
                 {director && <PersonSmall {...director} {...props}/>}
@@ -55,7 +58,7 @@ export default function (props) {
             </div>
         </div>
 
-        <MarkDown source={model.description}/>
+
         {model.educationContent && <div><h3>Содержание образования</h3>
             <hr/>
             <MarkDown source={model.educationContent}/></div>}
