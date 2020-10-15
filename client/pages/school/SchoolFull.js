@@ -35,7 +35,7 @@ export default function (props) {
         <div className="row">
             <div className="col-sm-4">
                 <img src={model.photoPath} alt={model.name} className="img-fluid"/>
-                {model.files.filter(f => f.path !== model.photoPath).map(f => <img src={f.path} alt={model.name} className="img-fluid"/>)}
+                {model.files.filter(f => f.path !== model.photoPath).map(f => <img key={f.id} src={f.path} alt={model.name} className="img-fluid"/>)}
             </div>
             <div className="col-sm">
                 <div className=" p-2">
@@ -47,7 +47,7 @@ export default function (props) {
                     <div className="text-justify"><MarkDown source={model.description}/></div>
                 </div>
             </div>
-            {director || !!model.persons.length || !!news.length && <div className="col-sm">
+            {(director || !!model.persons.length || !!news.length) && <div className="col-sm">
                 {director && <PersonSmall {...director} {...props}/>}
                 {model.persons.filter(p => p.statusId !== 1).map(p => <PersonSmall key={p.id} {...p} {...props}/>)}
                 {news.length > 0 && <div>
