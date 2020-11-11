@@ -2,9 +2,54 @@
 body
   background: url("/uploads/bg.jpg")
   .theme-main
-    color: black
+    background-color: white
+    color: $blue-color
+    @media screen and (max-width: $width-main)
+      a
+        text-decoration: underline
+      .header
+        border-bottom: 1px solid silver
+        h1
+          font-size: 1.5em
+        .photo
+          max-width: 100%
+      .menu2
+        div:before
+          content: '-'
+
+    @media screen and (min-width: $width-main)
+      width: $width-main
+      margin: auto
+      .content-wrap
+        display: flex
+        .menu2
+          width: $width-menu
+          div
+            margin: 10px
+            padding: 10px
+            background: linear-gradient(0deg, $blue-color 0%,  $blue-color2 100%)
+            color: white
+            a
+              color: white
+        .content
+          width: $width-main - $width-menu
+      .header
+        //background-color: $blue-color
+        color: white
+        background: linear-gradient(0deg, $blue-color 0%,  $blue-color2 100%)
+        display: flex
+        .text
+          width: $width-main - $width-menu
+          padding: 5px
+          h1
+            font-size: 1.5em
+        .photo
+          width: $width-menu
+          text-align: right
+          img
+            height: 140px
     a
-      color: black
+      color: $blue-color
     .content
       background-color: white
       h2
@@ -30,7 +75,7 @@ body
     img#nikolaev
       -webkit-transform: scaleX(-1)
       transform: scaleX(-1)
-    @media screen and (min-width: $min-width)
+    @media screen and (min-width: $width-main)
       #bottom-info
         display: flex
         justify-content: space-between
@@ -40,7 +85,7 @@ body
     .partners
       background-color: white
       display: flex
-      @media screen and (max-width: $min-width)
+      @media screen and (max-width: $width-main)
         flex-wrap: wrap
       align-content: baseline
       a

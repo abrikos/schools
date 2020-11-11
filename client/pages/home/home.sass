@@ -54,17 +54,17 @@
     .carousel-item
       text-align: center
       .plain-caption
-        @media screen and (min-width: $min-width)
+        @media screen and (min-width: $width-main)
           display: none
 
       img
         display: block
         margin: auto
 
-        @media screen and (max-width: $min-width)
+        @media screen and (max-width: $width-main)
           height: 200px
 
-        @media screen and (min-width: $min-width)
+        @media screen and (min-width: $width-main)
           max-height: 400px
         max-width: 100%
     .carousel-caption

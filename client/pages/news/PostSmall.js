@@ -14,7 +14,7 @@ export default function PostSmall(props) {
     const post = props;
     const link = props.isAdmin ? post.adminLink : post.link;
     return <div className={`post-small`}>
-        <div className="post-small-image">
+        <div className="d-flex align-items-center">
             <A href={link || '#'}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
         </div>
         <div className="post-small-content">

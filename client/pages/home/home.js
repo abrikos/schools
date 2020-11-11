@@ -21,11 +21,8 @@ export default function Home(props) {
     const [news, setNews] = useState([]);
     const [newsLast, setNewsLast] = useState([]);
     useEffect(() => {
-        props.api('/post/search', {where: {published: true, isMassMedia: {$ne: true}}, limit: 5})
+        props.api('/post/search', {where: {published: true, isMassMedia: {$ne: true}}, limit: 6})
             .then(res => {
-                const last = [];
-                last.push(res.shift());
-                setNewsLast(last)
                 setNews(res)
             })
     }, []);
@@ -51,13 +48,13 @@ export default function Home(props) {
     return <div className="home p-xl-1">
         <div className="row">
             {newsLast && <div className="col-sm-4">
-                {formatLastNews(0)}
+                {news.slice(0,2).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
             </div>}
             <div className="col-sm-4">
-                {news.slice(0,2).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
+                {news.slice(2,4).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
             </div>
             <div className="col-sm-4">
-                {news.slice(2).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
+                {news.slice(2,4).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
             </div>
 
 

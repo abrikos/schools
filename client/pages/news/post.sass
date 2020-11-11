@@ -3,7 +3,7 @@
   padding: 5px
   background-color: white
   border-radius: 5px
-  @media screen and (min-width: $min-width)
+  @media screen and (min-width: $width-main)
     text-align: justify
   img
     margin: auto
@@ -17,7 +17,7 @@
   .post-payments
     .alert
       width: 30%
-      @media screen and (max-width: $min-width)
+      @media screen and (max-width: $width-main)
         width: 100%
       margin: 5px
 
@@ -36,13 +36,11 @@
   margin: 12px
   padding: 10px
   //font-size: .7em
-  width: 318px
   height: 300px
-  @media screen and (max-width: $min-width)
+  @media screen and (max-width: $width-main)
     width: 100%
   .date
     font-size: .7em
-  .post-small-image
+  img
     max-height: 200px
-    img
-      max-height: 200px
+    max-width: 80px
