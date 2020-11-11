@@ -54,7 +54,7 @@ export default function Home(props) {
                 {news.slice(2,4).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
             </div>
             <div className="col-sm-4">
-                {news.slice(2,4).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
+                {news.slice(4).map(n => <div key={n.id}>{PostSmall(n)}</div>)}
             </div>
 
 
