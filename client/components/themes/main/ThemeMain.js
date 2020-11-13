@@ -22,7 +22,7 @@ export default function ThemeMain(props) {
         <div className="content-wrap">
 
                 <div className="menu2">
-                    <div className="colored"><A href='/directors'>Навигатор директора СШ</A></div>
+                    <div><A href='/directors'>Навигатор директора СШ</A></div>
                     <div>Учителям</div>
                     <div>Ученикам</div>
                     <div>Родителям</div>
