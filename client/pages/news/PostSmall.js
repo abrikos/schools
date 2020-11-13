@@ -2,8 +2,6 @@ import React from 'react';
 import {A} from "hookrouter";
 import DateFormat from "client/components/DateFormat";
 import PropTypes from "prop-types";
-import striptags from "striptags"
-import MarkDown from "react-markdown";
 
 export default function PostSmall(props) {
     PostSmall.propTypes = {
@@ -14,13 +12,11 @@ export default function PostSmall(props) {
     const post = props;
     const link = props.isAdmin ? post.adminLink : post.link;
     return <div className={`post-small`}>
-        <div className="d-flex align-items-center">
-            <A href={link || '#'}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
-        </div>
+        <div className="img-wrapper">{post.youtube ? <iframe src={`https://www.youtube.com/embed/${post.youtube}?controls=1`} width="100%" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : <A href={link || '#'}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
+        }</div>
         <div className="post-small-content">
-            <div><A href={link || '#'}><DateFormat date={post.date}/></A></div>
             <small><A href={link || '#'}>{post.header}</A></small>
-
+            <div className="text-right text-secondary"><DateFormat date={post.date}/></div>
         </div>
     </div>;
 }

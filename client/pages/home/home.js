@@ -34,16 +34,6 @@ export default function Home(props) {
         </div>
     }
 
-    function formatLastNews(i) {
-        if (!newsLast[i]) return <div></div>;
-        return <div className="first-news">
-            <div className="first-news-img">
-                <A href={newsLast[i].link}><img src={newsLast[i].photoPath} className="img-preview"/></A>
-            </div>
-            <div><DateFormat date={newsLast[i].date}/></div>
-            <A href={newsLast[i].link}>{newsLast[i].header}</A>
-        </div>
-    }
 
     return <div className="home p-xl-1">
         <div className="row">

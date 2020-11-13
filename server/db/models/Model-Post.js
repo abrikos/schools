@@ -1,6 +1,9 @@
 import moment from "moment";
 import transliterate from "transliterate"
+import getYouTubeID from 'get-youtube-id';
 
+const util = require('util')
+const ogs = require('open-graph-scraper');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -8,6 +11,7 @@ const modelSchema = new Schema({
         header: {type: String, label: 'Заголовок'},
         text: {type: String, label: 'Текст', control: 'markdown'},
         url: {type: String, label: 'Адрес на сайте СМИ'},
+        youtube: {type: String, label: 'ID на YouTube'},
         isHtml: {type: Boolean, label: 'as Html'},
         editable: Boolean,
         published: {type: Boolean, label: 'Опубликовано'},
@@ -35,6 +39,19 @@ modelSchema.formOptions = {
     searchFields: ['header'],
 }
 
+modelSchema.statics.fromUrl = async function ({url}, user) {
+    const r = await this.urlMeta(url)
+    let youtube;
+    if(url.toLowerCase().match('youtu')){
+        youtube = getYouTubeID(url)
+    }
+    return await this.create({user, imgUrl: r.ogImage.url, header: r.ogTitle, text: r.ogDescription, published: true, url, youtube})
+}
+
+modelSchema.statics.urlMeta = async function (url) {
+    const ogsP = util.promisify(ogs)
+    return await ogsP({url})
+}
 
 modelSchema.virtual('date')
     .get(function () {
@@ -57,8 +74,7 @@ modelSchema.virtual('adminLink')
 
 modelSchema.virtual('link')
     .get(function () {
-        if (this.isMassMedia) return this.url;
-        return `/news/` + this.id + '/' + (this.header ? transliterate(this.header).replace(/[^a-zA-Z0-9]/g, '-') : '')
+        return this.url || `/news/` + this.id + '/' + (this.header ? transliterate(this.header).replace(/[^a-zA-Z0-9]/g, '-') : '')
     });
 
 

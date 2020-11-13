@@ -52,6 +52,12 @@ module.exports.controller = function (app) {
 
     });
 
+    app.post('/api/:model/method/:name', (req, res) => {
+        Mongoose[req.params.model][req.params.name](req.body, req.session.userId)
+            .then(d => res.send(d))
+    });
+
+
     app.post('/api/:model/:id/view', (req, res) => {
         Mongoose[req.params.model].findById(req.params.id)
             .populate(Mongoose[req.params.model].population)
