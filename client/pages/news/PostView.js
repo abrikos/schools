@@ -41,7 +41,7 @@ export default function PostView(props) {
             {post.files.filter(i => !i.isImage).map(i => <a href={i.path} key={i.id}>{i.description}</a>)}
             <hr/>
             <div className="d-sm-flex flex-wrap">
-            {post.files.filter(i => i.isImage).map(f=><img  src={f.path} className="img-fluid"/> )}
+            {post.files.filter(i=>i.path!==post.photoPath).map(f=><img  src={f.path} className="img-fluid"/> )}
             </div>
             <ShareButtons link={post.shareLink}/>
 
