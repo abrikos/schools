@@ -10,8 +10,6 @@ import MarkDown from "react-markdown";
 export default function PostView(props) {
     const [post, setPost] = useState({});
     const [error, setError] = useState();
-    const url = window.location.href.split('/');
-    const apiLink = `${url[0]}//${url[2]}/api/post/share/${props.id}`;
 
     useEffect(() => {
 
@@ -45,7 +43,7 @@ export default function PostView(props) {
             <div className="d-sm-flex flex-wrap">
             {post.files.filter(i => i.isImage).map(f=><img  src={f.path} className="img-fluid"/> )}
             </div>
-            <ShareButtons link={apiLink}/>
+            <ShareButtons link={post.shareLink}/>
 
         </div>
     </div>

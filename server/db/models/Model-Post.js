@@ -72,6 +72,11 @@ modelSchema.virtual('adminLink')
         return `/admin/post/${this.id}/update`
     });
 
+modelSchema.virtual('shareLink')
+    .get(function () {
+        return `/api/post/share/${this.id}`
+    });
+
 modelSchema.virtual('link')
     .get(function () {
         return this.url || `/news/` + this.id + '/' + (this.header ? transliterate(this.header).replace(/[^a-zA-Z0-9]/g, '-') : '')
