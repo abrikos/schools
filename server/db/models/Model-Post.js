@@ -74,7 +74,7 @@ modelSchema.virtual('adminLink')
 
 modelSchema.virtual('shareLink')
     .get(function () {
-        return `/api/post/share/${this.id}`
+        return `/api/post/share/${this.id}/` + (this.header ? transliterate(this.header).replace(/[^a-zA-Z0-9]/g, '-') : '')
     });
 
 modelSchema.virtual('link')
