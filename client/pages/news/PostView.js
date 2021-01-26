@@ -30,7 +30,7 @@ export default function PostView(props) {
             <AdminLink model={post} isAdmin={post.editable} {...props}/>
             <hr/>
             <div className="d-flex justify-content-center">
-                <img src={post.photoPath} className="m-auto" alt={post.header}/>
+                <img src={post.photoPath} className="img-fluid m-auto" alt={post.header}/>
             </div>
 
             <div className="post-text">
