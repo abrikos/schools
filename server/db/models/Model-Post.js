@@ -3,7 +3,7 @@ import transliterate from "transliterate"
 import getYouTubeID from 'get-youtube-id';
 
 const util = require('util')
-const ogs = require('open-graph-scraper');
+const ogs = require('open-graph');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -11,6 +11,7 @@ const modelSchema = new Schema({
         header: {type: String, label: 'Заголовок'},
         text: {type: String, label: 'Текст', control: 'markdown'},
         url: {type: String, label: 'Адрес на сайте СМИ'},
+        imgUrl: {type: String, label: 'Фото на сайте СМИ'},
         youtube: {type: String, label: 'ID на YouTube'},
         isHtml: {type: Boolean, label: 'as Html'},
         editable: Boolean,
@@ -45,12 +46,17 @@ modelSchema.statics.fromUrl = async function ({url}, user) {
     if(url.toLowerCase().match('youtu')){
         youtube = getYouTubeID(url)
     }
-    return await this.create({user, imgUrl: r.ogImage.url, header: r.ogTitle, text: r.ogDescription, published: true, url, youtube})
+    return await this.create({user, imgUrl: r.image.url[0], header: r.title[1] || r.title[0], text: r.description, published: true, url, youtube})
 }
 
 modelSchema.statics.urlMeta = async function (url) {
     const ogsP = util.promisify(ogs)
-    return await ogsP({url})
+    try {
+        return await ogsP(url)
+    }catch (e){
+        console.log(e)
+    }
+    return {}
 }
 
 modelSchema.virtual('date')
@@ -64,7 +70,7 @@ modelSchema.virtual('date')
 
 modelSchema.virtual('photoPath')
     .get(function () {
-        return this.photo ? this.photo.path : '/noImage.png'
+        return this.imgUrl || (this.photo ? this.photo.path : '/noImage.png')
     });
 
 modelSchema.virtual('adminLink')
