@@ -3,6 +3,10 @@ import {A} from "hookrouter";
 import DateFormat from "client/components/DateFormat";
 import PropTypes from "prop-types";
 
+function A2(props){
+    return props.post.url ? <a {...props}/> : <A {...props}/>
+}
+
 export default function PostSmall(props) {
     PostSmall.propTypes = {
         //post: PropTypes.object.isRequired,
@@ -15,7 +19,7 @@ export default function PostSmall(props) {
         <div className="img-wrapper">{post.youtube ? <iframe src={`https://www.youtube.com/embed/${post.youtube}?controls=1`} width="100%" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : <A href={link || '#'}><img src={post.photoPath} alt={post.header} className="img-fluid"/></A>
         }</div>
         <div className="post-small-content">
-            <small><A href={link || '#'}>{post.header}</A></small>
+            <small><A2 post={post} href={link || '#'}>{post.header}</A2></small>
             <div className="text-right text-secondary"><DateFormat date={post.date}/></div>
         </div>
     </div>;
