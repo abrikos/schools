@@ -27,6 +27,7 @@ export default function ThemeMain(props) {
                     <div>Ученикам</div>
                     <div>Родителям</div>
                     <div>Библиотека</div>
+                    <div><a href="https://урокцифры.рф" target="_blank">урокцифры.рф</a> </div>
                     <div>
                         <a href="https://drive.google.com/open?id=18oYkDMm-rmDpRHuTRd_MIItGs8pm7fa-" target="_blank">Стратегия пять шагов модернизации</a>
                     </div>
