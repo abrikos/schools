@@ -6,6 +6,8 @@ import nikolaev from "./photos/nikolaev.jpg"
 import Partners from "client/components/themes/main/Partners";
 import UserMenu from "client/components/themes/main/UserMenu";
 import {A} from "hookrouter";
+import YouTube from "react-youtube";
+import ReactPlayer from "react-player"
 
 export default function ThemeMain(props) {
 
@@ -22,14 +24,18 @@ export default function ThemeMain(props) {
         <div className="content-wrap">
 
                 <div className="menu2">
-                    <div><A href='/directors'>Навигатор директора СШ</A></div>
-                    <div>Учителям</div>
-                    <div>Ученикам</div>
-                    <div>Родителям</div>
-                    <div>Библиотека</div>
-                    <div><a href="https://урокцифры.рф" target="_blank">урокцифры.рф</a> </div>
-                    <div>
+                    <div className="menu"><A href='/directors'>Навигатор директора СШ</A></div>
+                    <div className="menu">Учителям</div>
+                    <div className="menu">Ученикам</div>
+                    <div className="menu">Родителям</div>
+                    <div className="menu">Библиотека</div>
+                    <div className="menu"><a href="https://урокцифры.рф" target="_blank">урокцифры.рф</a> </div>
+                    <div className="menu">
                         <a href="https://drive.google.com/open?id=18oYkDMm-rmDpRHuTRd_MIItGs8pm7fa-" target="_blank">Стратегия пять шагов модернизации</a>
+                    </div>
+                    <div>
+                        <YouTube videoId={'ErkbvXaav88'} opts={{width:'300', height:'180', paused:false}}/>
+                        {/*<ReactPlayer url={'https://www.youtube.com/watch?v=ErkbvXaav88'} width={300} height={230} playing={true}/>*/}
                     </div>
                 </div>
                 <div className="content">
