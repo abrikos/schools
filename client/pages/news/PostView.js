@@ -6,6 +6,7 @@ import "client/pages/news/post.sass"
 import HtmlView from "client/components/HtmlView";
 import AdminLink from "client/components/AdminLink";
 import MarkDown from "react-markdown";
+import YouTube from "react-youtube";
 
 export default function PostView(props) {
     const [post, setPost] = useState({});
@@ -30,7 +31,8 @@ export default function PostView(props) {
             <AdminLink model={post} isAdmin={post.editable} {...props}/>
             <hr/>
             <div className="d-flex justify-content-center">
-                <img src={post.photoPath} className="img-fluid m-auto" alt={post.header}/>
+                {post.youtube ? <YouTube videoId={post.youtube}/> : <img src={post.photoPath} className="img-fluid m-auto" alt={post.header}/>}
+
             </div>
 
             <div className="post-text">
@@ -41,6 +43,7 @@ export default function PostView(props) {
             {post.files.filter(i => !i.isImage).map(i => <a href={i.path} key={i.id}>{i.description}</a>)}
             <hr/>
             <div className="d-sm-flex flex-wrap">
+
             {post.files.filter(i=>i.path!==post.photoPath).map(f=><img  src={f.path} className="img-fluid"/> )}
             </div>
             <ShareButtons link={post.shareLink}/>
